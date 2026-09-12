@@ -31,14 +31,15 @@
   先自动路由，诊断叫加什么几何控制才加（一次最多一个）。
 - **验收门**：`validate --quality showcase` 0 错 0 警（9 项 artifact checks）→ `deliver`（冻结
   快照、SHA-256 回执）→ `visual-check`（真实浏览器 1440×900/1600×1000/1920×1080/2048×1320
-  containment 全过）。**validate 单图 ≤10 轮**是硬纪律；两轮聚焦修复无改善即停下如实报告。
+  containment 全过，四视口为命令固定集合）。**validate 单图 ≤10 轮**是硬纪律；
+  两轮聚焦修复无改善即停下如实报告。
 
 ## 三、实测硬约束（踩过的坑，按图型速查）
 
 | 图型 | 硬约束 | 违反症状 |
 | --- | --- | --- |
-| 全部 | viewBox 宽 ≤ ~1080（930px 可视区 / 6px 最小投影字号） | desktop-readability 报 projectedFontPx < 6 |
-| 全部 | 页面垂直 ≤ 1440×900 视口（标题+图+卡片） | visual-check overflowY |
+| 全部 | 按 `desktop-readability` 实测控制 viewBox 与字号；必要时缩窄布局或增大字号（930px 可视区 / 6px 最小投影字号） | desktop-readability 报 `projectedFontPx < 6` |
+| 全部 | `visual-check` 固定四视口（1440×900、1600×1000、1920×1080、2048×1320）containment 须全过 | visual-check overflowY |
 | dataflow | stageX 固定 `100+i×215`；stage0 节点宽 ≤152；相邻段节点宽度和 ≤ ~390 | bounds 越界 / 端点 stub <8px |
 | dataflow | 多条流共享段间竖向通道时，标签须落在通道间隙的空窗内 | label-route-clearance 0px |
 | workflow v2 | 同列纵向堆叠节点会把 intrinsic 高度撑爆（1259×1999 实测）——优先折叠进 sublabel 单行主链 | 高度爆炸 / readability 挂 |
