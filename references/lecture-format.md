@@ -88,7 +88,7 @@ Phase 1–2 的讲授在对话中交付；Phase 5 的两份文件按本文末尾
 ## 参考（IEEE）
 ```
 
-- Mermaid 两张：机制的「两相/多相」各一张；遵循项目图表规范（subgraph 分层、emoji、深色可读）。
+- 图两张：机制的「两相/多相」各一张，**archify 优先**（走项目资产管线四件套：.mmd 文本源 → archify HTML → 双主题 PNG → 暗色内嵌 + 索引登记）；无管线/无对应图型时降级内联 Mermaid。创作与验收纪律见 [diagram-assets.md](diagram-assets.md)。
 - 笔记里引用的原型输出必须是**实际运行输出**，标注「实际运行日志」。
 
 ## 六、映射报告模板（Phase 5 · 入项目 docs）
