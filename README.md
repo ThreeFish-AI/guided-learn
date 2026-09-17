@@ -5,18 +5,29 @@
 
 ## 安装
 
-```bash
-# 方式一：克隆即装（外部用户）
-git clone https://github.com/ThreeFish-AI/guided-learn.git ~/.claude/skills/guided-learn
+本技能遵循 SKILL.md 开放标准，Claude Code 与 Antigravity IDE 通用，差异仅在技能目录：
 
-# 方式二：symlink（本机维护模式——改仓库即改 Skill）
+| 宿主 | 全局技能目录 | 工作区级技能目录 |
+| :--- | :--- | :--- |
+| Claude Code | `~/.claude/skills/` | `<repo>/.claude/skills/` |
+| Antigravity IDE | `~/.gemini/config/skills/` | `<workspace>/.agents/skills/` |
+
+```bash
+# 方式一：克隆即装（外部用户）——SKILL_DIR 取上表对应目录
+SKILL_DIR=~/.claude/skills   # Antigravity IDE 改为 ~/.gemini/config/skills
+git clone https://github.com/ThreeFish-AI/guided-learn.git $SKILL_DIR/guided-learn
+
+# 方式二：symlink（本机维护模式——改仓库即改 Skill，多宿主共享单一事实源）
 git clone https://github.com/ThreeFish-AI/guided-learn.git ~/{projects-dir}/guided-learn
-ln -s ~/{projects-dir}/guided-learn ~/.claude/skills/guided-learn
+ln -s ~/{projects-dir}/guided-learn ~/.claude/skills/guided-learn           # Claude Code
+ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # Antigravity IDE
 ```
+
+> 技能清单在**会话开始时**扫描，安装后须重启 Agent 会话方可被发现。Antigravity 向后兼容旧路径 `~/.gemini/antigravity/skills/` 与 `.agent/skills/`。
 
 ## 使用
 
-显式调用：`/guided-learn <材料 URL 或路径>`；或自然语言触发——
+显式调用：Claude Code 用 `/guided-learn <材料 URL 或路径>`；Antigravity IDE 无斜杠命令，直接在会话中点名「guided-learn」。或自然语言触发——
 「带我精读这篇论文」「先梳理全貌不要急着总结」「提炼这个领域的核心规律与争议」「以老师身份教我掌握 X」「帮我搞懂这份资料/视频并实践」。
 
 ## 工作流（五阶段线性单向演进）
