@@ -1,6 +1,6 @@
-# 图表资产规范（Phase 5 · archify 优先）
+# 图表资产规范（Phase 4 · archify 优先）
 
-> Phase 5 沉淀笔记的配图**默认走 archify**（Claude Code 的 `/archify` 技能），不再手写内联
+> Phase 4 沉淀笔记的配图**默认走 archify**（Claude Code 的 `/archify` 技能），不再手写内联
 > Mermaid；仅当目标项目无 archify 管线、或图类型无 archify 对应（erDiagram/timeline/mindmap/
 > quadrantChart/gantt/pie/gitGraph/classDiagram）时，降级内联 Mermaid。
 > 本规范总结自 negentropy 仓库 114+ 图资产管线的实测（2026-09 波次），可直接照抄执行。
