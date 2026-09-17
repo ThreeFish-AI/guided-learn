@@ -27,7 +27,7 @@ ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # An
 
 ## 使用
 
-显式调用：Claude Code 用 `/guided-learn <材料 URL 或路径>`；Antigravity IDE 无斜杠命令，直接在会话中点名「guided-learn」。或自然语言触发——
+显式调用：`/guided-learn <材料 URL 或路径>`（Claude Code 与 Antigravity IDE 通用）；或自然语言触发——
 「带我精读这篇论文」「先梳理全貌不要急着总结」「提炼这个领域的核心规律与争议」「以老师身份教我掌握 X」「帮我搞懂这份资料/视频并实践」。
 
 ## 工作流（五阶段线性单向演进）
