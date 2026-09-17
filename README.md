@@ -10,8 +10,8 @@
 git clone https://github.com/ThreeFish-AI/guided-learn.git ~/.claude/skills/guided-learn
 
 # 方式二：symlink（本机维护模式——改仓库即改 Skill）
-git clone https://github.com/ThreeFish-AI/guided-learn.git ~/Documents/projects/aurelius/guided-learn
-ln -s ~/Documents/projects/aurelius/guided-learn ~/.claude/skills/guided-learn
+git clone https://github.com/ThreeFish-AI/guided-learn.git ~/{projects-dir}/guided-learn
+ln -s ~/{projects-dir}/guided-learn ~/.claude/skills/guided-learn
 ```
 
 ## 使用
