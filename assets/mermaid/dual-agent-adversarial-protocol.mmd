@@ -1,0 +1,36 @@
+%% source: SKILL.md §双代理对抗内省机制 (lines 53-84 @ HEAD f4941e9)
+%% slug: dual-agent-adversarial-protocol
+%% type: flowchart LR
+%% derived: archify workflow v2 -> assets/architecture/dual-agent-adversarial-protocol.html
+flowchart LR
+    subgraph Mentor["Mentor Agent (严师主导)"]
+        M1["梳理全貌与因果链"]
+        M2["提炼底层规律与争议"]
+        M3["界定研究范围定义域"]
+        M4["费曼三维考评出题"]
+        M5["四类缺陷诊断 & 三板斧教授"]
+        M6["同构变式复考出题 & 出闸裁决"]
+    end
+
+    subgraph Learner["Learner Subagent (求知学徒代管)"]
+        L0["Phase 0 门槛自查作答"]
+        L1["Phase 1 总类比复述与主线自验"]
+        L2["Phase 2c 费曼三维独立作答<br/>(白话/因果/极限推演)"]
+        L3["认知修正 & 变式复考应试"]
+    end
+
+    M0["一手材料"] --> M1 & L0
+    L0 -->|盲区对齐| M1
+    M1 --> L1
+    L1 -->|脉络掌握| M2
+    M2 --> M3 --> M4
+    M4 -->|考评题| L2
+    L2 -->|应答卷| M5
+    M5 -->|诊断与讲授 + 变式题| L3
+    L3 -->|复考作答| M6
+    M6 -->|全绿放行| P3["Phase 3 原型实验与退化实测"]
+
+    classDef mentor fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef learner fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#f8fafc;
+    class M1,M2,M3,M4,M5,M6 mentor;
+    class L0,L1,L2,L3 learner;
