@@ -55,7 +55,7 @@
 - 把实测日志与关键中间产物（如 guidance 的完整输入提示、翻译输出）**穿插进沉淀笔记**
   的对应机制小节，标注「实际运行输出」——这是「画面感」的来源。
 - 破坏性实验独立成「动手实验室」小节：运行方式 + 机制→代码行号速查 + 三件套实录。
-- 提示用户亲手重跑与再拆：`cd .temp/<topic>-lab && uv run --no-project python <file>.py --selftest`。
+- 在自治流水线中由 Agent 自主跑通并完整记录退化数据回灌笔记，同时在交付物中提示用户亲手重跑与再拆：`cd .temp/<topic>-lab && uv run --no-project python <file>.py --selftest`。
 
 ## 卫生
 
