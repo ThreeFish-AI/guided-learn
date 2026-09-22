@@ -1,0 +1,261 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "双代理对抗内省机制（Dual-Agent Adversarial Protocol）",
+    "locale": "zh-CN",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "io",
+      "label": "输入与交付"
+    },
+    {
+      "id": "mentor",
+      "label": "Mentor · 严师主导"
+    },
+    {
+      "id": "learner",
+      "label": "Learner · 学徒代管"
+    }
+  ],
+  "groups": [
+    {
+      "id": "remediation-gate",
+      "label": "培优与出闸闭环",
+      "lane": "mentor",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "source-material",
+    "mentor-anatomy",
+    "learner-recite",
+    "mentor-distill",
+    "mentor-exam",
+    "learner-feynman",
+    "mentor-remedy",
+    "learner-retest",
+    "mentor-verdict",
+    "prototype-lab"
+  ],
+  "nodes": [
+    {
+      "id": "source-material",
+      "lane": "io",
+      "col": 0,
+      "type": "external",
+      "label": "一手材料",
+      "sublabel": "论文 / 文档 / 代码库",
+      "width": 132
+    },
+    {
+      "id": "learner-selfcheck",
+      "lane": "learner",
+      "col": 0,
+      "type": "frontend",
+      "label": "门槛自查作答",
+      "sublabel": "前置概念 3 题自测",
+      "tag": "Phase 0",
+      "width": 128
+    },
+    {
+      "id": "mentor-anatomy",
+      "lane": "mentor",
+      "col": 1,
+      "type": "backend",
+      "label": "梳理全貌与因果链",
+      "sublabel": "Tier 分层精读",
+      "tag": "Phase 1",
+      "width": 128
+    },
+    {
+      "id": "learner-recite",
+      "lane": "learner",
+      "col": 1,
+      "type": "frontend",
+      "label": "总类比复述与主线自验",
+      "sublabel": "2 道因果核心题",
+      "tag": "Phase 1",
+      "width": 150
+    },
+    {
+      "id": "mentor-distill",
+      "lane": "mentor",
+      "col": 2,
+      "type": "backend",
+      "label": "提炼规律与界定范围",
+      "sublabel": "五大规律 + 核心争议",
+      "tag": "Phase 2",
+      "width": 140
+    },
+    {
+      "id": "mentor-exam",
+      "lane": "mentor",
+      "col": 3,
+      "type": "backend",
+      "label": "费曼三维考评出题",
+      "sublabel": "三维正交大题",
+      "tag": "Phase 2c",
+      "width": 128
+    },
+    {
+      "id": "learner-feynman",
+      "lane": "learner",
+      "col": 4,
+      "type": "frontend",
+      "label": "费曼三维独立作答",
+      "sublabel": "全程白话独立推演",
+      "tag": "Phase 2c",
+      "width": 128
+    },
+    {
+      "id": "mentor-remedy",
+      "lane": "mentor",
+      "col": 4,
+      "type": "backend",
+      "label": "薄弱点诊断与讲授",
+      "sublabel": "缺陷归因 + 三板斧",
+      "tag": "Phase 2c",
+      "width": 128
+    },
+    {
+      "id": "learner-retest",
+      "lane": "learner",
+      "col": 5,
+      "type": "frontend",
+      "label": "认知修正与变式应试",
+      "sublabel": "同构变式题再作答",
+      "tag": "Phase 2c",
+      "width": 140
+    },
+    {
+      "id": "mentor-verdict",
+      "lane": "mentor",
+      "col": 5,
+      "type": "security",
+      "label": "变式复考与出闸裁决",
+      "sublabel": "变式出题 · 全绿判定",
+      "tag": "Phase 2c",
+      "width": 140
+    },
+    {
+      "id": "prototype-lab",
+      "lane": "io",
+      "col": 5,
+      "type": "cloud",
+      "label": "原型实验与退化实测",
+      "sublabel": "破坏实验 · 退化对照",
+      "tag": "Phase 3",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "dispatch-mentor",
+      "from": "source-material",
+      "to": "mentor-anatomy",
+      "role": "main"
+    },
+    {
+      "id": "dispatch-learner",
+      "from": "source-material",
+      "to": "learner-selfcheck",
+      "role": "branch",
+      "variant": "dashed"
+    },
+    {
+      "id": "blindspot-align",
+      "from": "learner-selfcheck",
+      "to": "mentor-anatomy",
+      "label": "盲区对齐",
+      "role": "branch",
+      "variant": "dashed"
+    },
+    {
+      "id": "guide-recite",
+      "from": "mentor-anatomy",
+      "to": "learner-recite",
+      "role": "main"
+    },
+    {
+      "id": "mastery-confirm",
+      "from": "learner-recite",
+      "to": "mentor-distill",
+      "label": "脉络掌握",
+      "role": "main"
+    },
+    {
+      "id": "distill-to-exam",
+      "from": "mentor-distill",
+      "to": "mentor-exam",
+      "role": "main"
+    },
+    {
+      "id": "exam-paper",
+      "from": "mentor-exam",
+      "to": "learner-feynman",
+      "label": "考评题",
+      "role": "main"
+    },
+    {
+      "id": "answer-sheet",
+      "from": "learner-feynman",
+      "to": "mentor-remedy",
+      "label": "应答卷",
+      "role": "main",
+      "route": "drop"
+    },
+    {
+      "id": "remedy-loop",
+      "from": "mentor-remedy",
+      "to": "learner-retest",
+      "label": "诊断与讲授 + 变式题",
+      "role": "main"
+    },
+    {
+      "id": "retest-answer",
+      "from": "learner-retest",
+      "to": "mentor-verdict",
+      "label": "复考作答",
+      "role": "main"
+    },
+    {
+      "id": "allgreen-release",
+      "from": "mentor-verdict",
+      "to": "prototype-lab",
+      "label": "全绿放行",
+      "role": "main",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "免阻塞闭环",
+      "items": [
+        "考核全部在 Mentor ↔ Learner 内部闭环完成，绝不向用户抛题阻塞流程",
+        "全流程自治推进，用户在最终交付后按需自我考核与费曼追问"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "费曼三维考评",
+      "items": [
+        "白话转述 / 因果本质差异 / 极限场景推演三道正交大题",
+        "严禁背诵行话，作答暴露薄弱点即触发针对性培优"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "全绿门禁",
+      "items": [
+        "薄弱点诊断 + 三板斧讲授后，以同构变式题复考",
+        "复考未全绿绝不放行 Phase 3 原型实验"
+      ]
+    }
+  ]
+}

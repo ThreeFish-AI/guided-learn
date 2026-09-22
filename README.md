@@ -58,6 +58,8 @@ SKILL.md                      # 主工作流规约、双代理对抗协议、自
 references/lecture-format.md  # 讲授/考评模板（全貌三问/规律/争议/双Agent费曼考评实录/用户自测套件/笔记与映射报告骨架）
 references/prototype-lab.md   # 最小原型实验室方法论（确定性 mock / 场景设计 / 破坏性实验纪律）
 references/diagram-assets.md  # 图表资产管线规范（archify 优先 / Mermaid 降级）
+assets/mermaid/               # 图表文本源 SSOT（Mermaid .mmd，头部含溯源注释）
+assets/architecture/          # archify 交付产物（交互 HTML / 双主题 PNG / spec 与校验记录）
 ```
 
 ---

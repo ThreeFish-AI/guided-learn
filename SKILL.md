@@ -49,40 +49,9 @@ description: 导师式精读与领域掌控。以严格且经验老到的老师�
 
 为消除人工阻塞并确保内省深度，技能运行时内化双角色协同机制：
 
-```mermaid
-flowchart LR
-    subgraph Mentor["Mentor Agent (严师主导)"]
-        M1["梳理全貌与因果链"]
-        M2["提炼底层规律与争议"]
-        M3["界定研究范围定义域"]
-        M4["费曼三维考评出题"]
-        M5["四类缺陷诊断 & 三板斧教授"]
-        M6["同构变式复考出题 & 出闸裁决"]
-    end
+![双代理对抗内省机制：Mentor 梳理全貌、提炼规律、费曼出题、诊断讲授、变式裁决 × Learner 代管自测、脉络复述、三维作答、复考应试](assets/architecture/dual-agent-adversarial-protocol-dark.png)
 
-    subgraph Learner["Learner Subagent (求知学徒代管)"]
-        L0["Phase 0 门槛自查作答"]
-        L1["Phase 1 总类比复述与主线自验"]
-        L2["Phase 2c 费曼三维独立作答<br/>(白话/因果/极限推演)"]
-        L3["认知修正 & 变式复考应试"]
-    end
-
-    M0["一手材料"] --> M1 & L0
-    L0 -->|盲区对齐| M1
-    M1 --> L1
-    L1 -->|脉络掌握| M2
-    M2 --> M3 --> M4
-    M4 -->|考评题| L2
-    L2 -->|应答卷| M5
-    M5 -->|诊断与讲授 + 变式题| L3
-    L3 -->|复考作答| M6
-    M6 -->|全绿放行| P3["Phase 3 原型实验与退化实测"]
-
-    classDef mentor fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
-    classDef learner fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#f8fafc;
-    class M1,M2,M3,M4,M5,M6 mentor;
-    class L0,L1,L2,L3 learner;
-```
+*图 1 · 双代理对抗内省机制（Dual-Agent Adversarial Protocol）。图源 [Mermaid 源](assets/mermaid/dual-agent-adversarial-protocol.mmd) · [交互版 HTML](assets/architecture/dual-agent-adversarial-protocol.html)*
 
 - **运行时编排规则**：
   - 在支持 Subagent 派发环境（如 Claude Code Task/Subagent、Antigravity Subagent）：主 Agent 作为 Mentor，调用 Subagent 扮演 Learner 执行作答与复考；
@@ -106,19 +75,9 @@ flowchart LR
 
 全流程由 5 个严格单向演进的阶段构成，全程自治执行，最终端到端交付：
 
-```mermaid
-flowchart LR
-    P0["Phase 0<br/>准入体检<br/>(学徒自测)"] -->|自测无缝接入| P1["Phase 1<br/>全貌解剖<br/>(脉络复述)"]
-    P1 -->|脉络通透| P2["Phase 2<br/>规律、争议与严师考评"]
-    subgraph P2["Phase 2 · 规律、争议与内省闭环"]
-        P2a["2a. 5大底层规律"] --> P2b["2b. 2~3核心争议"] --> P2c["2c. 双Agent费曼考评闭环"]
-    end
-    P2c -->|变式复考全绿| P3["Phase 3<br/>原型验证与破坏实验"]
-    P3 -->|实测自证| P4["Phase 4<br/>经验结晶与系统映射"]
+![五阶段自治演进流水线：Phase 0 准入体检（学徒自测）→ Phase 1 全貌解剖（脉络复述）→ Phase 2 规律/争议/双 Agent 费曼考评闭环（2a 规律 → 2b 争议 → 2c 考评）→ Phase 3 原型验证与破坏实验 → Phase 4 经验结晶与系统映射，单向演进、门禁全绿放行](assets/architecture/five-phase-autonomous-pipeline-dark.png)
 
-    classDef phase fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
-    class P0,P1,P2,P3,P4,P2a,P2b,P2c phase;
-```
+*图 2 · 五阶段自治演进流水线（Five-Phase Autonomous Pipeline）。图源 [Mermaid 源](assets/mermaid/five-phase-autonomous-pipeline.mmd) · [交互版 HTML](assets/architecture/five-phase-autonomous-pipeline.html)*
 
 ### Phase 0 · 准入体检 (Orientation & Readiness)
 - **目标**：评估门槛，筛查盲区，确立学习基础。
@@ -195,4 +154,5 @@ flowchart LR
 - **讲授排版、考评规约与沉淀文档模板**：[references/lecture-format.md](references/lecture-format.md)
 - **最小原型实验室与破坏性实验方法论**：[references/prototype-lab.md](references/prototype-lab.md)
 - **架构图表与资产管线设计规范**：[references/diagram-assets.md](references/diagram-assets.md)
+- **图表资产交付登记索引**：[assets/README.md](assets/README.md)
 - **维护仓库**：[ThreeFish-AI/guided-learn](https://github.com/ThreeFish-AI/guided-learn)

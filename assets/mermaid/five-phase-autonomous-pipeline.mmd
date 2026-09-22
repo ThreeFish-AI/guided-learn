@@ -1,0 +1,15 @@
+%% source: SKILL.md §工作流规约 (lines 110-120 @ HEAD f4941e9)
+%% slug: five-phase-autonomous-pipeline
+%% type: flowchart LR
+%% derived: archify workflow v2 -> assets/architecture/five-phase-autonomous-pipeline.html
+flowchart LR
+    P0["Phase 0<br/>准入体检<br/>(学徒自测)"] -->|自测无缝接入| P1["Phase 1<br/>全貌解剖<br/>(脉络复述)"]
+    P1 -->|脉络通透| P2["Phase 2<br/>规律、争议与严师考评"]
+    subgraph P2["Phase 2 · 规律、争议与内省闭环"]
+        P2a["2a. 5大底层规律"] --> P2b["2b. 2~3核心争议"] --> P2c["2c. 双Agent费曼考评闭环"]
+    end
+    P2c -->|变式复考全绿| P3["Phase 3<br/>原型验证与破坏实验"]
+    P3 -->|实测自证| P4["Phase 4<br/>经验结晶与系统映射"]
+
+    classDef phase fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    class P0,P1,P2,P3,P4,P2a,P2b,P2c phase;
