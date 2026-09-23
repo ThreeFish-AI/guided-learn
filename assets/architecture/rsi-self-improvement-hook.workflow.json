@@ -1,0 +1,237 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "RSI 自我改进钩子（Recursive Self-Improvement Hook）",
+    "locale": "zh-CN",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "host",
+      "label": "主流程 · Mentor Agent"
+    },
+    {
+      "id": "rsi",
+      "label": "RSI 子 Agent · 隔离 clone"
+    },
+    {
+      "id": "upstream",
+      "label": "用户 · 上游仓库"
+    }
+  ],
+  "phases": [
+    {
+      "id": "ph-capture",
+      "label": "旁路捕获",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "ph-improve",
+      "label": "交付后改进",
+      "fromCol": 2,
+      "toCol": 3
+    },
+    {
+      "id": "ph-verify",
+      "label": "核验与确认",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "emphasis"
+    }
+  ],
+  "groups": [
+    {
+      "id": "grp-verifier",
+      "label": "Verifier · 独立核验",
+      "lane": "rsi",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "rsi-trigger",
+    "rsi-capture",
+    "deliver-first",
+    "steward-research",
+    "steward-patch",
+    "verifier-gates",
+    "user-confirm",
+    "pr-submit"
+  ],
+  "nodes": [
+    {
+      "id": "rsi-trigger",
+      "lane": "host",
+      "col": 0,
+      "type": "security",
+      "label": "触发白名单",
+      "sublabel": "用户指出 · 运行时证据",
+      "tag": "横切全阶段",
+      "width": 132
+    },
+    {
+      "id": "rsi-capture",
+      "lane": "host",
+      "col": 1,
+      "type": "database",
+      "label": "旁路捕获入账",
+      "sublabel": "backlog · 锚点 · 脱敏",
+      "width": 132
+    },
+    {
+      "id": "deliver-first",
+      "lane": "host",
+      "col": 2,
+      "type": "backend",
+      "label": "Phase 4 先交付",
+      "sublabel": "交付后才派发子 Agent",
+      "width": 132
+    },
+    {
+      "id": "steward-research",
+      "lane": "rsi",
+      "col": 2,
+      "type": "backend",
+      "label": "去重预检与根因调研",
+      "sublabel": "G0 · Chesterton's Fence",
+      "tag": "Steward",
+      "width": 140
+    },
+    {
+      "id": "steward-patch",
+      "lane": "rsi",
+      "col": 3,
+      "type": "backend",
+      "label": "最小改进",
+      "sublabel": "单点修改 · 指针同步",
+      "tag": "Steward",
+      "width": 124
+    },
+    {
+      "id": "verifier-gates",
+      "lane": "rsi",
+      "col": 4,
+      "type": "security",
+      "label": "独立核验门禁",
+      "sublabel": "正确 · 收益 · 非回归 · 隐私",
+      "tag": "Verifier",
+      "width": 140
+    },
+    {
+      "id": "gate-reject",
+      "lane": "rsi",
+      "col": 5,
+      "type": "external",
+      "label": "只报告不提 PR",
+      "sublabel": "拒绝记忆 · 不再追问",
+      "width": 124
+    },
+    {
+      "id": "user-confirm",
+      "lane": "upstream",
+      "col": 4,
+      "type": "frontend",
+      "label": "RSI 报告一次确认",
+      "sublabel": "门禁全绿后 · 可持久授权",
+      "tag": "门禁全绿后",
+      "width": 150
+    },
+    {
+      "id": "pr-submit",
+      "lane": "upstream",
+      "col": 5,
+      "type": "external",
+      "label": "推送并创建 PR",
+      "sublabel": "维护者终审 · 永不自合并",
+      "tag": "--base main",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "trigger-to-capture",
+      "from": "rsi-trigger",
+      "to": "rsi-capture",
+      "label": "锚点可复现",
+      "role": "main"
+    },
+    {
+      "id": "capture-to-deliver",
+      "from": "rsi-capture",
+      "to": "deliver-first",
+      "label": "主流程继续",
+      "role": "main"
+    },
+    {
+      "id": "deliver-to-research",
+      "from": "deliver-first",
+      "to": "steward-research",
+      "role": "main"
+    },
+    {
+      "id": "research-to-patch",
+      "from": "steward-research",
+      "to": "steward-patch",
+      "label": "根因成立",
+      "role": "main"
+    },
+    {
+      "id": "patch-to-verify",
+      "from": "steward-patch",
+      "to": "verifier-gates",
+      "label": "候选 diff",
+      "role": "main"
+    },
+    {
+      "id": "verify-to-confirm",
+      "from": "verifier-gates",
+      "to": "user-confirm",
+      "role": "main"
+    },
+    {
+      "id": "confirm-to-submit",
+      "from": "user-confirm",
+      "to": "pr-submit",
+      "label": "确认 / 授权",
+      "role": "main",
+      "variant": "emphasis"
+    },
+    {
+      "id": "verify-to-reject",
+      "from": "verifier-gates",
+      "to": "gate-reject",
+      "label": "任一不过",
+      "role": "error",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "只捕获 · 不打断",
+      "items": [
+        "发现即入账，教学平面按已安装版本继续，严禁会话内热改 Skill",
+        "交付消息先发，RSI 报告随后补充呈现，每批一次确认"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "反刷分（Anti Objective Hacking）",
+      "items": [
+        "削弱门禁、考评或验证强度的改动默认拒绝或升级 T3",
+        "改动 RSI 协议自身一律按制度变更处理，仅提 Draft PR"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "人在回路终审",
+      "items": [
+        "永不推 main、永不自合并，合并权归维护者",
+        "无 gh 或未确认时仅保留本地 patch；无网络则只捕获"
+      ]
+    }
+  ]
+}
