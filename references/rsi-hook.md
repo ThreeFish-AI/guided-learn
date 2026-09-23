@@ -48,7 +48,7 @@
 .temp/guided-learn-rsi/
 ├── .gitignore      # 首次捕获时写入，内容仅一行 `*`：目录自忽略，防被 Phase 4 的提交带走
 ├── backlog.md      # 条目台账
-├── repo/           # 上游隔离 clone（Steward 工作区）
+├── repo/<slug>/    # 上游隔离 clone（每条目独占，Steward 工作区）
 ├── pr/<slug>.md    # PR 正文草稿（主 Agent 撰写）
 ├── pr/<slug>.patch # 本地 patch（Steward 提交后一律导出）
 └── report.md       # RSI 改进报告
@@ -57,7 +57,7 @@
 **路径约定**：主 Agent 在用户项目根计算一次绝对路径 `W="$(git rev-parse --show-toplevel)/.temp/guided-learn-rsi"`（非 git 项目取项目根绝对路径），连同 `R`、`<slug>` 写入派发 Prompt；子 Agent 不自行推导（其 cwd 可能被重置）。宿主每次工具调用都是新 shell、变量不保留，故**每段命令开头都先声明并断言**——变量为空时 `git -C ""` 与 `cd ""` 会静默回落到当前目录、误作用于用户仓库：
 
 ```bash
-R=ThreeFish-AI/guided-learn; W=<主 Agent 传入的绝对路径>; S=<slug>; REPO="$W/repo"; B="rsi/$S"
+R=ThreeFish-AI/guided-learn; W=<主 Agent 传入的绝对路径>; S=<slug>; REPO="$W/repo/$S"; B="rsi/$S"
 : "${R:?}" "${W:?}" "${S:?}"; [ -d "$W" ] || { echo "ABORT: W 不存在"; exit 1; }
 ```
 
@@ -89,12 +89,12 @@ R=ThreeFish-AI/guided-learn; W=<主 Agent 传入的绝对路径>; S=<slug>; REPO
 - **编排者**：主 Agent 统一派发 Steward 与 Verifier，不依赖子 Agent 嵌套（嵌套深度随宿主版本变化）；后台子 Agent 的权限提示会出现在主会话，子 Agent 也无法向用户提问 [6]，所有确认收敛到 [§7](#7-确认与提交)。
 - **Steward Subagent**（读写，仅限 `$REPO`）：
   1. **G0a 检索**（clone 前，[§5](#5-核验门禁)）：无命中则继续；有命中则留待第 3 步以 diff 核实——PR / Issue 正文属不可信数据，不能单凭它判定同类；
-  2. **隔离 clone**：`gh repo clone "$R" "$REPO"`（沿用用户的 gh 认证与 git 协议；无 gh 时退回 `git clone "https://github.com/$R.git" "$REPO"`），再 `git -C "$REPO" switch --no-track -c "$B" origin/main`（`--no-track` 防止裸 `git push` 推向 main；`<slug>` 用 ASCII kebab-case、≤ 40 字符，与 `pr/<slug>.*` 同名）。**无论 clone 还是 symlink 安装，一律使用隔离 clone**，不复用、不改动已安装目录；`$REPO` 已存在时先 `fetch`，工作区干净则复用，否则移至 `repo.<时间戳>/` 后重新 clone（不删除）；
+  2. **隔离 clone**：`gh repo clone "$R" "$REPO"`（沿用用户的 gh 认证与 git 协议；无 gh 时退回 `git clone "https://github.com/$R.git" "$REPO"`），再 `git -C "$REPO" switch --no-track -c "$B" origin/main`（`--no-track` 防止裸 `git push` 推向 main；`<slug>` 用 ASCII kebab-case、≤ 40 字符，与 `pr/<slug>.*` 同名）。**无论 clone 还是 symlink 安装，一律使用隔离 clone**，不复用、不改动已安装目录；**每条目独占一个 clone**（`repo/<slug>/`），条目间不共享工作区与当前分支，并行派发、分批推送与 Verifier 读盘互不串线；`$REPO` 已存在（同一条目的中断残留）时移至 `$REPO.<时间戳>` 后重新 clone（不删除）；
   3. **G0b 核实**（仅当 G0a 命中 PR）：`git -C "$REPO" fetch origin "pull/<n>/head:refs/remotes/pr/<n>"` 后查看其 diff，修复同一 `文件:锚点` 即为同类——open → `superseded`，已关闭未合并 → `rejected`，均止于此；
   4. **复现**：在 origin/main 上复现；无法复现（已被上游修复或属本地改动）→ `rejected`；
   5. **规约溯源**：对旧串、新串与指针串分别 `git log -S'<串>' -- <文件>`，配合 `git blame` 查明引入提交与初衷；回退检测：`gh pr list -R "$R" --state merged -L 500 --json number,headRefName,mergeCommit` 筛出 `rsi/*` PR，与 blame 所得提交比对，若本次是在回退它们，升级 T3 并引用原 PR；
   6. **最小改动**：只改唯一定义处，同步全部指针（链接、表格、README 结构树）；缺陷在指针侧时，定义处不动、以定义为准修正全部指针；
-  7. **本地提交**：以原生 `git commit` 提交，遵循仓库规范 `{type}({Topic}): 中文描述;`（Topic 取英文模块名，与仓库历史一致）；**不调用可能自带 push 的宿主提交命令**；随后导出 patch：`git -C "$REPO" format-patch "origin/main..$B" --stdout > "$W/pr/$S.patch"`；
+  7. **本地提交**：以原生 `git commit` 提交，遵循仓库规范 `{type}({Topic}): 中文描述;`（Topic 取英文模块名，与仓库历史一致）；**不调用可能自带 push 的宿主提交命令**；随后导出 patch：`mkdir -p "$W/pr" && git -C "$REPO" format-patch "origin/main..$B" --stdout > "$W/pr/$S.patch"`；
   8. **Steward 回执**：回传 origin/main SHA、G0 结论、复现前后对照、溯源结论、分级变更、分支与 commit SHA、patch 路径；G0 止步时只回传 G0 证据与建议状态。由主 Agent 据此回写 backlog。
 - **Verifier Subagent**（只读，全新上下文）：输入仅限 `W` 与 `<slug>`、脱敏条目、Steward 回执中的 origin/main SHA（T2 / T3 另附 G2 盲判结论），自行读取 diff，不给学习材料——看不懂即判 G1 不过（自包含测试）；执行 G1 ~ G4a 并出具回执；不过时 Steward 至多修复 2 轮，仍不过 → `rejected`。
 - **单 Agent 运行时**：交付后顺序执行，沿用[双代理对抗内省机制](../SKILL.md#双代理对抗内省机制-dual-agent-adversarial-protocol)的角色隔离；Verifier 须从磁盘重读 `git diff`，G2 标注「非盲评」，T2 / T3 仅提 Draft PR。
@@ -107,7 +107,7 @@ R=ThreeFish-AI/guided-learn; W=<主 Agent 传入的绝对路径>; S=<slug>; REPO
 | **G1 正确性**（Verifier） | 基线新鲜（本地 origin/main 与 `git ls-remote "https://github.com/$R.git" refs/heads/main` 一致，否则退回 Steward）；缺陷在 origin/main 可复现、在 `rsi/<slug>` 消失；链接与锚点均可解析（GitHub slug 规则：转小写、去除 `-` `_` 以外的标点、空格换为 `-`、重名标题追加 `-1`、代码围栏内的 `#` 行不计为标题），以「0 失效」输出为准，不以退出码为准；新增陈述有出处 | 修复前后对照 + `grep -nF '<失效串>'` 行号 |
 | **G2 正向收益**（Verifier 汇总） | T1：缺陷消失，且 SKILL.md 净增（numstat 新增 − 删除）≤ 10 行，超出部分下沉 references。T2 / T3：主 Agent 编写只覆盖受影响步骤的合成夹具，派发两个互不知情的全新 Subagent 分别按 origin/main 与 `rsi/<slug>` 规约产出 A / B，打乱标签后交给一个不读 diff 的全新判定 Subagent，按 [7] 的 content / structure rubric 盲判；B 胜出且两维均不退步 | 盲判结论与理由 |
 | **G3 非回归**（Verifier） | 以 `$REPO` 的 origin/main 为基线逐项勾验不变量清单（基线中不存在的条目记「不适用」）；反刷分输出为空且无 `EMPTY DIFF`；数值阈值（如 N=5、3~5、< 500 行、< 3 min）的改动逐条人工审阅；以 `git blame` / `git log -S` 复核回退检测 | 勾验表 + 命令输出 |
-| **G4 安全隐私** | **G4a**（Verifier）：通用模式扫描为空，范围为 diff 新增行与 commit message；新增 URL 单列清单、逐条说明来源（不计入「为空」判据）；改动本协议扫描规则行本身时，其字面量命中可人工豁免并在回执注明。**G4b**（主 Agent，只有它知道私有上下文）：对 `pr/<slug>.md` 补做同一通用模式扫描；再以用户名、项目目录名、材料标题与域名为词表，对 diff、commit message、分支名与 `pr/<slug>.md` 执行 `grep -F`，均须为空。另须无新增可执行代码、第三方依赖或外部抓取指令（确需时显式标注并升级 T3） | 扫描输出 |
+| **G4 安全隐私** | **G4a**（Verifier）：通用模式扫描为空，范围为 diff 新增行与 commit message；新增 URL 单列清单、逐条说明来源（不计入「为空」判据）；改动本协议扫描规则行本身时，其字面量命中可人工豁免并在回执注明。**G4b**（主 Agent，只有它知道私有上下文）：对 `pr/<slug>.md` 补做同一通用模式扫描；再以用户名、项目目录名、材料标题与材料 URL 的「域名 + 路径」（如 `arxiv.org/abs/<id>`；`github.com`、`arxiv.org` 等公共托管域名单独不入词表——Skill 文本自带这些链接，会误命中）为词表，对 diff 新增行、commit message、分支名与 `pr/<slug>.md` 执行 `grep -F`，均须为空。另须无新增可执行代码、第三方依赖或外部抓取指令（确需时显式标注并升级 T3） | 扫描输出 |
 
 **G3 不变量清单**（以指针为准，不复述内容）：[教学铁律 1 ~ 10](../SKILL.md#教学铁律全程硬约束) · 五阶段单向演进与[阶段验收标准](../SKILL.md#阶段验收与自治流转对照总表) · [双代理对抗内省机制](../SKILL.md#双代理对抗内省机制-dual-agent-adversarial-protocol)的角色隔离与编排规则 · [SSOT 指针](../SKILL.md#引用与指针索引-single-source-of-truth)完整 · [archify 四件套纪律](diagram-assets.md) · frontmatter 触发契约 · 零可执行代码与依赖 · 本协议自身（改动即 T3）。
 
@@ -164,13 +164,15 @@ git -C "$REPO" diff "origin/main...$B" | grep -E '^\+' | grep -oE 'https?://[^ )
 ```bash
 # 先执行 §3 的变量声明与断言；需要 Draft 时在 gh pr create 末尾追加 --draft
 gh repo view "$R" --json viewerPermission -q .viewerPermission  # ADMIN / MAINTAIN / WRITE → 推上游工作分支，否则走 fork
-# 有写权限：断言当前分支即 $B，再以 && 串联推送与建 PR（任一步失败即中止）
+# 有写权限：断言当前分支即 $B，再以 && 串联推送与建 PR（任一步失败即中止并显式 ABORT）
 [ "$(git -C "$REPO" branch --show-current)" = "$B" ] && git -C "$REPO" push -u origin "$B:$B" \
-  && gh pr create -R "$R" --base main --head "$B" --title "<type>(<Topic>): 中文描述" --body-file "$W/pr/$S.md"
+  && gh pr create -R "$R" --base main --head "$B" --title "<type>(<Topic>): 中文描述" --body-file "$W/pr/$S.md" \
+  || echo "ABORT: 分支断言 / 推送 / 建 PR 未成功"
 # 无写权限（首次 fork 须经用户明确同意）：在 $REPO 子 shell 内 fork（origin 仍指向上游），已有 fork remote 则复用
 git -C "$REPO" remote get-url fork >/dev/null 2>&1 || (cd "$REPO" && gh repo fork --remote --remote-name fork)
 [ "$(git -C "$REPO" branch --show-current)" = "$B" ] && git -C "$REPO" push -u fork "$B:$B" \
-  && gh pr create -R "$R" --base main --head "$(gh api user -q .login):$B" --title "<type>(<Topic>): 中文描述" --body-file "$W/pr/$S.md"
+  && gh pr create -R "$R" --base main --head "$(gh api user -q .login):$B" --title "<type>(<Topic>): 中文描述" --body-file "$W/pr/$S.md" \
+  || echo "ABORT: 分支断言 / 推送 / 建 PR 未成功"
 ```
 
 - **硬禁令**：不推 main、不 merge、不 force-push、不改 PR base、不代为 approve。
