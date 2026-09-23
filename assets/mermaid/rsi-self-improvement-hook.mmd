@@ -1,0 +1,31 @@
+%% source: references/rsi-hook.md §1 流程总览 (new diagram, no inline predecessor @ HEAD 222b34c)
+%% slug: rsi-self-improvement-hook
+%% type: flowchart LR
+%% derived: archify workflow v2 -> assets/architecture/rsi-self-improvement-hook.html
+flowchart LR
+    subgraph Host["主流程 · Mentor Agent"]
+        T["触发白名单<br/>(用户指出 / 运行时证据)"]
+        C["旁路捕获入账<br/>(backlog · 锚点 · 脱敏)"]
+        D["Phase 4 先交付<br/>(交付后才派发子 Agent)"]
+    end
+    subgraph RSI["RSI 子 Agent · 隔离 clone"]
+        S1["去重预检与根因调研<br/>(G0 · Chesterton's Fence)"]
+        S2["最小改进<br/>(单点修改 · 指针同步)"]
+        V["独立核验门禁<br/>(正确 · 收益 · 非回归 · 隐私)"]
+        X["只报告不提 PR<br/>(拒绝记忆 · 不再追问)"]
+    end
+    subgraph Up["用户 · 上游仓库"]
+        U["RSI 报告一次确认<br/>(门禁全绿后 · 可持久授权)"]
+        P["推送并创建 PR<br/>(维护者终审 · 永不自合并)"]
+    end
+    T -->|锚点可复现| C -->|主流程继续| D
+    D --> S1 -->|根因成立| S2 -->|候选 diff| V
+    V --> U -->|确认 / 授权| P
+    V -.->|任一不过| X
+
+    classDef host fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    classDef rsi fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#f8fafc;
+    classDef up fill:#0f172a,stroke:#f472b6,stroke-width:2px,color:#f8fafc;
+    class T,C,D host;
+    class S1,S2,V,X rsi;
+    class U,P up;
