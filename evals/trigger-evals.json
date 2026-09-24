@@ -1,0 +1,22 @@
+[
+  {"query": "这是 arXiv 上的 2505.22954（Darwin Gödel Machine），我想真正吃透它的设计：先帮我把全貌梳理清楚，别急着给结论，最后最好能写个小原型验证一下关键机制。", "should_trigger": true},
+  {"query": "带我精读一下这份 Raft 论文 ~/papers/raft-extended.pdf，我要能讲给组里新人听懂，顺便看看哪些机制能映射到我们自己的调度服务代码里。", "should_trigger": true},
+  {"query": "以老师的身份带我掌握 CRDT，材料我放在 docs/crdt-notes/ 下面了，要严格一点，考考我哪里没懂。", "should_trigger": true},
+  {"query": "tokio 这个仓库的调度器我一直一知半解，想系统地学一遍：核心数据结构是什么、为什么这么设计、拔掉某个机制会坏在哪。", "should_trigger": true},
+  {"query": "帮我提炼一下 LSM-Tree 这个领域的底层规律和核心争议，材料是 LevelDB 设计文档、RocksDB tuning guide 和 WiscKey 论文这三份。", "should_trigger": true},
+  {"query": "I have the Kafka KRaft design doc (KIP-500). Walk me through it like a strict mentor: full picture first, then the underlying principles, then hands-on experiments that break things.", "should_trigger": true},
+  {"query": "Karpathy 讲 GPT tokenizer 的那个两小时视频，我想彻底搞懂原理并动手复刻关键步骤，别只给我摘要。", "should_trigger": true},
+  {"query": "先梳理全貌，不要急着总结——这篇 Spanner 论文我读了两遍还是串不起来，帮我把各部分之间的因果关系理清楚。", "should_trigger": true},
+  {"query": "公司内部这份 200 页的支付网关架构规格 docs/spec/payment-gateway-v3.md，我下周要接手这块，带我深入学一遍，做到能自己推演极端场景下会在哪里先崩。", "should_trigger": true},
+  {"query": "想用费曼学习法把 Paxos Made Simple 啃下来：你先讲透，再出题考我、找出我的薄弱点，最后给我留几道自测题。", "should_trigger": true},
+  {"query": "帮我用三五句话总结一下这篇论文的核心结论就行 https://arxiv.org/abs/2303.11366 ，赶时间开会用。", "should_trigger": false},
+  {"query": "把这篇 Reflexion 论文全文翻译成中文，保留公式和图表编号。", "should_trigger": false},
+  {"query": "把 Attention Is All You Need 这篇论文做成一个 5 分钟的动效科普视频，要配音和字幕。", "should_trigger": false},
+  {"query": "把《Designing Data-Intensive Applications》这本 epub 转成一个 agent skill，方便以后写代码时调用书里的框架。", "should_trigger": false},
+  {"query": "根据 docs/design/order-service.md 这份设计文档帮我画一张系统架构图，要能导出暗色 PNG。", "should_trigger": false},
+  {"query": "帮我校验一下这篇技术博客里的性能数据和结论是否属实，有没有夸大或缺项的地方。", "should_trigger": false},
+  {"query": "Python 的 asyncio.gather 和 asyncio.wait 有什么区别？给个例子。", "should_trigger": false},
+  {"query": "我照着 Raft 论文实现的选举逻辑有 bug，节点一直反复发起选举，帮我看看 raft/election.go 哪里写错了。", "should_trigger": false},
+  {"query": "简单讲一下什么是向量数据库，一两段话就行。", "should_trigger": false},
+  {"query": "review 一下我这个 PR 的改动，重点看并发安全和锁的粒度。", "should_trigger": false}
+]
