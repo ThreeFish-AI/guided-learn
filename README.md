@@ -83,6 +83,7 @@ references/prototype-lab.md   # 最小原型实验室方法论（确定性 mock 
 references/diagram-assets.md  # 图表资产管线规范（archify 优先 / Mermaid 降级）
 references/rsi-hook.md        # RSI 自我改进钩子协议（触发白名单 / 旁路捕获 / 核验门禁 / PR 模板 / 降级矩阵）
 evals/trigger-evals.json      # 触发评测集（10 应触发 + 10 近邻不触发，供 description 优化）
+evals/heldout-trigger-evals.json # held-out 触发评测集（10 + 10 边界探针，只验证不参与调参）
 evals/evals.json              # 任务评测集（论文全流程 / 轻量材料裁剪 / TL;DR 边界）
 assets/README.md              # 图表资产登记索引（spec / artifact 双 SHA-256）
 assets/mermaid/               # 图表文本源 SSOT（Mermaid .mmd，头部含溯源注释）

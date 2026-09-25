@@ -2,8 +2,8 @@
 
 > Phase 4 沉淀笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
 > 两个条件分开判定：① 宿主未安装 archify、或图类型无 archify 对应（erDiagram/timeline/mindmap/
-> quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 项目有无资产管线只决定
-> 走第一节还是第四节。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
+> quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 在 ① 未命中时，项目有无
+> 资产管线决定走第一节还是第四节。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
 > archify 文档冲突，以其文档为准。
 
 ## 一、项目有资产管线时（如 `docs/assets/`）
