@@ -1,0 +1,22 @@
+[
+  {"query": "SQLite 为什么能做到那么快？我有官方架构页 https://www.sqlite.org/arch.html 和一份源码快照，想花一周把它彻底拿下：你当教练带我一节节过，每节结束抽查我。", "should_trigger": true, "tag": "pos-教练抽查"},
+  {"query": "组里让我两周后做一次分布式共识的内部分享，讲义在 ~/lectures/distconsensus.pdf。带我把它盘到能上台的程度：你讲、我复述、你挑刺，反复到无懈可击。", "should_trigger": true, "tag": "pos-上台反复挑刺"},
+  {"query": "Vue3 响应式这五集视频我看得迷迷糊糊理不顺，笔记都倒在 docs/vue-reactivity/ 里。按因果把整条链给我重新搭一遍，搭完出几道刁钻问题检验我，不过关就换个角度再讲。", "should_trigger": true, "tag": "pos-因果重搭+检验"},
+  {"query": "I'm joining the payments team next month. Here's the 80-page service design spec (docs/design/payments.md) — I need to actually master it, not skim it. Teach me the design and grill me on edge cases I should be able to reason through.", "should_trigger": true, "tag": "pos-EN-grill"},
+  {"query": "我们调度器的优先级老化是抄 docs/sched-paper.pdf 里的思路。带我把它吃干榨净：每讲完一个机制，就在 sandbox 里把这个机制掰断一次，亲眼看系统怎么坏。", "should_trigger": true, "tag": "pos-掰断机制"},
+  {"query": "这集讲 LSM-Tree 的播客转成的文字稿我存在 lsmpod.txt 了，帮我消化成自己的东西：先理清整条线再谈观点，中途和结尾都考核我，最后做个小实验把写入放大跑出来看看。", "should_trigger": true, "tag": "pos-先理线再考核+实验"},
+  {"query": "我想彻底弄明白 mini-redis 这个教学仓库为什么这么组织：核心抽象、每个取舍、每个取舍的代价。带我过完之后，把值得抄的思路标到我们项目的对应文件上。", "should_trigger": true, "tag": "pos-代码库+映射"},
+  {"query": "这篇 SIGMOD'24 论文在 docs/sigmod24.pdf，我要做到任何细节都能从第一性原理推出来。你来安排学习路径：讲解、追问、反例、边界轰炸，全过再算完。", "should_trigger": true, "tag": "pos-追问反例边界"},
+  {"query": "把 docs/raft-cn/ 这套 Raft 中文译注全部学完并沉淀成带实验的笔记，我要的是以后能教别人的程度。", "should_trigger": true, "tag": "pos-学完教别人"},
+  {"query": "I've got the WASM internals doc saved at ~/docs/wasmer-internals.md. Walk me through it properly — build up the full picture first, then we verify the key mechanisms with tiny experiments I can run.", "should_trigger": true, "tag": "pos-EN-fullpicture+experiments"},
+  {"query": "深入理解一下 PR #482 的改动意图，然后重点 review 并发安全和锁的粒度。", "should_trigger": false, "tag": "neg-边界:理解+review"},
+  {"query": "把 services/billing 里那段计费循环深入读懂，然后重构成可测试的结构并补上单测。", "should_trigger": false, "tag": "neg-边界:读懂+重构"},
+  {"query": "深入分析这次 OOM：heap dump 和日志都在 .temp/oom/，理解根因后把泄漏修掉。", "should_trigger": false, "tag": "neg-边界:理解+修bug"},
+  {"query": "这三篇讲 PG 与 MySQL 索引差异的文章在 docs/db-index/，深入消化后给我一张选型对比表，周五要定方案。", "should_trigger": false, "tag": "neg-边界:消化+产出表"},
+  {"query": "下周面基础设施岗，帮我把 Kafka 高频面试题挨个深入讲透，按答案深度排好序。", "should_trigger": false, "tag": "neg-面试题讲解"},
+  {"query": "花点时间吃透我们的 webhooks 模块，然后把新人 onboarding 文档写出来，要能让人独立上手的那种。", "should_trigger": false, "tag": "neg-边界:吃透+写文档"},
+  {"query": "Deep-dive why p99 latency regressed 15% after the v2 upgrade and tell me what to tune.", "should_trigger": false, "tag": "neg-EN-性能排查"},
+  {"query": "这个 SDK 的文档太散了，帮我深入梳理一遍，收成一页能贴在工位上的 cheatsheet。", "should_trigger": false, "tag": "neg-梳理收成cheatsheet"},
+  {"query": "深入拆解竞品开源仓库的技术架构，输出一份给管理层看的差距评估报告，附迁移成本估算。", "should_trigger": false, "tag": "neg-拆解+评估报告"},
+  {"query": "给我深入讲讲到底什么是共识，为什么单靠心跳做不成，我要那种能真听懂的讲法。", "should_trigger": false, "tag": "neg-纯概念讲解"}
+]

@@ -1,0 +1,60 @@
+{
+  "skill_name": "guided-learn",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "带我精读这篇论文 https://arxiv.org/abs/2303.11366（Reflexion），先梳理全貌再总结，最后看看哪些机制能映射到当前仓库。",
+      "expected_output": "端到端自治跑完 Phase 0 → 4：全貌解剖、5 条底层规律、核心争议、双代理费曼考评实录、原型与破坏性实验实测数据、精读笔记与机制映射报告一次性交付，末尾附用户自测题。",
+      "files": [],
+      "expectations": [
+        "交付前未向用户提出任何需要作答或确认的问题，考评由 Learner Subagent 完成",
+        "全貌解剖含 Tier 1/2/3 分层矩阵与「观察 → 归因 → 设计规格 → 机制 → 证据」因果链",
+        "《类比计划》单射映射表存在，遴选纪要列出 30–50 个跨域候选",
+        "恰好列出 5 条「材料没有证明的事」",
+        "底层规律恰好 5 条，并声明正交分解覆盖的维度",
+        "《费曼考评实录》含 3 道三维考评题、《薄弱点诊断》与同构变式复考记录",
+        "派发给 Learner 的输入不含 Mentor 的参考答案或评分要点",
+        "原型位于 .temp/ 下的 lab 目录，selftest 输出含 SELFTEST PASSED，并有 3~5 项破坏性实验的实测退化记录",
+        "lab 目录含内容仅为 * 的 .gitignore",
+        "精读笔记与《机制映射报告》落盘 docs/，映射表每条带 文件:行号 锚点与 ✅/🔶/⏸ 判定",
+        "未执行 git push，除非项目或用户的提交约定明确要求",
+        "最终交付末尾附 3 道用户自测与费曼研讨题"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "带我吃透这篇短文讲的 Hybrid Clock 模式：https://martinfowler.com/articles/patterns-of-distributed-systems/hybrid-clock.html",
+      "expected_output": "按轻量材料裁剪：Phase 0~1 压缩合并，Phase 3 降级为设计预测题且不写代码，其余门禁与交付物照常。",
+      "files": [],
+      "expectations": [
+        "Phase 0 与 Phase 1 合并呈现",
+        "未编写原型代码，Phase 3 以设计预测题替代并给出预测依据",
+        "仍列出 5 条「材料没有证明的事」",
+        "仍完成研究范围界定与费曼三维考评闭环",
+        "交付前未向用户提出任何需要作答或确认的问题"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/guided-learn https://arxiv.org/abs/2305.10601 只要给我一段 TL;DR 就行，不用展开。",
+      "expected_output": "尊重用户只要摘要的明确指令：退出重型流水线，直接给出简短摘要，不创建 lab 目录、不落盘文档、不提交。",
+      "files": [],
+      "expectations": [
+        "输出为简短摘要，未展开五阶段流程",
+        "未创建 .temp/ lab 目录，未写入 docs/，未执行 git commit"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "带我吃透这篇 Hybrid Clock 短文：https://martinfowler.com/articles/patterns-of-distributed-systems/hybrid-clock.html 。讲完之后出题考我本人，我答不上来就换个角度再讲。",
+      "expected_output": "识别用户要求本人受考：此前阶段按轻量材料裁剪照常自治，2c 的费曼三维考评题改由用户作答，回合停在等待用户答复处，未由 Learner Subagent 代答，门禁标准不放松。",
+      "files": [],
+      "expectations": [
+        "考评前已完成研究范围界定，Phase 0 与 Phase 1 合并呈现",
+        "2c 的 3 道费曼三维考评题直接呈给用户，回合停在等待用户作答处",
+        "未由 Learner Subagent 代替用户作答 2c 考评题",
+        "未进入 Phase 3，未写入 docs/，未执行 git commit"
+      ]
+    }
+  ]
+}

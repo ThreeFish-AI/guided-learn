@@ -1,11 +1,12 @@
 # 图表资产规范（Phase 4 · archify 优先）
 
-> Phase 4 沉淀笔记的配图**默认走 archify**（Claude Code 的 `/archify` 技能），不再手写内联
-> Mermaid；仅当目标项目无 archify 管线、或图类型无 archify 对应（erDiagram/timeline/mindmap/
-> quadrantChart/gantt/pie/gitGraph/classDiagram）时，降级内联 Mermaid。
-> 本规范总结自 negentropy 仓库 114+ 图资产管线的实测（2026-09 波次），可直接照抄执行。
+> Phase 4 沉淀笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
+> 两个条件分开判定：① 宿主未安装 archify、或图类型无 archify 对应（erDiagram/timeline/mindmap/
+> quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 在 ① 未命中时，项目有无
+> 资产管线决定走第一节还是第四节。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
+> archify 文档冲突，以其文档为准。
 
-## 一、项目有资产管线时（如 negentropy 的 docs/assets/）
+## 一、项目有资产管线时（如 `docs/assets/`）
 
 四件套单向链路，顺序不可逆（判据与决策见项目 `docs/.agents/doc-media-assets.md` 类文档）：
 
@@ -21,7 +22,7 @@
 4. **消费与登记**：笔记中「暗色 PNG + 图源 .mmd 链接 + 交互版 HTML 链接」三件引用；项目资产
    索引（如 `docs/assets/mermaid/README.md`）登记新行。资产与索引必须同一次 `git add`。
 
-## 二、archify 快速创作要点（对照 /archify 技能的 Fast authoring path）
+## 二、archify 快速创作要点（对照 archify 技能的 Fast authoring path）
 
 - **类型映射**：`flowchart/graph` → `workflow`（组件图用 `architecture`）；流水线/血缘/治理
   → `dataflow`；`sequenceDiagram` → `sequence`；`stateDiagram` → `lifecycle`。新 workflow 用
@@ -48,8 +49,7 @@
 | lifecycle | 相邻态间隙固定 ~36px 放不下标签——标签 `labelDy` 上移出态带；泳道能少则少（3 泳道高度即近 700） | label overlap / 垂直越界 |
 | 全部 | 消费文档为进 wiki 的 markdown 时只用 `![]()`，`<picture>`/`<img>` 会 404 | wiki 图裂 |
 
-## 四、降级路径（无管线 / 无 archify 对应类型）
+## 四、降级路径（无 archify、无对应图型或项目无资产管线）
 
-- 项目无 `docs/assets/` 管线：笔记内联 Mermaid，但遵循「概念图轻量、深色可读、subgraph 分层」
-  原则，并在笔记头部注明未入管线的原因。
+- 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在笔记头部注明未入管线的原因。
 - 图类型无对应：原地保留 Mermaid（不建 .mmd，避免文本源双份）。
