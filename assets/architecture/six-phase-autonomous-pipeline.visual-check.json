@@ -6,9 +6,9 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "/Users/cm.huang/conductor/workspaces/guided-learn/seville/assets/architecture/five-phase-autonomous-pipeline.html",
-    "sha256": "6c02ca56f498eb673e818bf8d5d00f6f5262e26d2826f97c99fd41e9b340e15b",
-    "bytes": 805093
+    "path": "assets/architecture/six-phase-autonomous-pipeline.html",
+    "sha256": "d29f5870eae0c54729bf995180ce379e2ab6d0cb0616c535241cd45f22959ea8",
+    "bytes": 804170
   },
   "state": {
     "detail": "read",
@@ -35,7 +35,7 @@
         "ok": true,
         "readerWidth": 1376,
         "diagramWidth": 1346,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -66,7 +66,7 @@
         "ok": true,
         "readerWidth": 1536,
         "diagramWidth": 1506,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -97,7 +97,7 @@
         "ok": true,
         "readerWidth": 1856,
         "diagramWidth": 1826,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -128,7 +128,7 @@
         "ok": true,
         "readerWidth": 1920,
         "diagramWidth": 1870,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -165,7 +165,7 @@
         "ok": true,
         "readerWidth": 1376,
         "diagramWidth": 1346,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -196,7 +196,7 @@
         "ok": true,
         "readerWidth": 1536,
         "diagramWidth": 1506,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -227,7 +227,7 @@
         "ok": true,
         "readerWidth": 1856,
         "diagramWidth": 1826,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -258,7 +258,7 @@
         "ok": true,
         "readerWidth": 1920,
         "diagramWidth": 1870,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -294,7 +294,7 @@
         "ok": true,
         "readerWidth": 1376,
         "diagramWidth": 1346,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -325,7 +325,7 @@
         "ok": true,
         "readerWidth": 1536,
         "diagramWidth": 1506,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -356,7 +356,7 @@
         "ok": true,
         "readerWidth": 1856,
         "diagramWidth": 1826,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -387,7 +387,7 @@
         "ok": true,
         "readerWidth": 1920,
         "diagramWidth": 1870,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -423,7 +423,7 @@
         "ok": true,
         "readerWidth": 1376,
         "diagramWidth": 1346,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -440,7 +440,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "light",
-        "file": "five-phase-autonomous-pipeline.visual-check.1440x900.light.png"
+        "file": "six-phase-autonomous-pipeline.visual-check.1440x900.light.png"
       },
       {
         "width": 1440,
@@ -455,7 +455,7 @@
         "ok": true,
         "readerWidth": 1376,
         "diagramWidth": 1346,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -472,7 +472,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "dark",
-        "file": "five-phase-autonomous-pipeline.visual-check.1440x900.dark.png"
+        "file": "six-phase-autonomous-pipeline.visual-check.1440x900.dark.png"
       },
       {
         "width": 2048,
@@ -487,7 +487,7 @@
         "ok": true,
         "readerWidth": 1920,
         "diagramWidth": 1870,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -504,7 +504,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "light",
-        "file": "five-phase-autonomous-pipeline.visual-check.2048x1320.light.png"
+        "file": "six-phase-autonomous-pipeline.visual-check.2048x1320.light.png"
       },
       {
         "width": 2048,
@@ -519,7 +519,7 @@
         "ok": true,
         "readerWidth": 1920,
         "diagramWidth": 1870,
-        "viewBoxWidth": 1226,
+        "viewBoxWidth": 1235,
         "minimumProjectedNodeTextPx": 8,
         "minimumProjectedNodeText": "学徒自测 · 门槛筛查",
         "minimumProjectedNodeTextDetail": "context",
@@ -536,13 +536,13 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "dark",
-        "file": "five-phase-autonomous-pipeline.visual-check.2048x1320.dark.png"
+        "file": "six-phase-autonomous-pipeline.visual-check.2048x1320.dark.png"
       }
     ],
-    "contactSheet": "five-phase-autonomous-pipeline.visual-check.html"
+    "contactSheet": "six-phase-autonomous-pipeline.visual-check.html"
   },
   "sidecars": {
-    "receipt": "five-phase-autonomous-pipeline.visual-check.json",
-    "contactSheet": "five-phase-autonomous-pipeline.visual-check.html"
+    "receipt": "six-phase-autonomous-pipeline.visual-check.json",
+    "contactSheet": "six-phase-autonomous-pipeline.visual-check.html"
   }
 }

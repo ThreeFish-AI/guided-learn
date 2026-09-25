@@ -2,7 +2,7 @@
 
 ## 设计原则
 
-1. **位置与体量**：`.temp/<topic>-lab/`（目录自忽略、Phase 4 交付后可清理、不入库），单文件，<500 行。
+1. **位置与体量**：`.temp/<topic>-lab/`（目录自忽略、Phase 5 交付后可清理、不入库），单文件，<500 行。
 2. **纯标准库**：零第三方依赖，`uv run --no-project python <file>.py --selftest` 直跑（无 uv 时 `python3 <file>.py --selftest`）。
 3. **验证机制而非模型能力**：材料里的 LLM 角色（solver / refiner / guidance）全部用
    确定性 mock 或脚本化序列替代——原型回答「机制是否自洽」，不回答「模型是否聪明」。

@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "六阶段自治演进流水线",
+    "locale": "zh-CN",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "auto-run", "label": "自治执行" },
+    { "id": "deliver", "label": "结晶交付" }
+  ],
+  "phases": [
+    { "id": "ph-intake", "label": "准入", "fromCol": 0, "toCol": 0 },
+    { "id": "ph-anatomy", "label": "解剖", "fromCol": 1, "toCol": 1 },
+    { "id": "ph-introspect", "label": "内省闭环", "fromCol": 2, "toCol": 2, "variant": "emphasis" },
+    { "id": "ph-empirical", "label": "实证", "fromCol": 3, "toCol": 3 },
+    { "id": "ph-crystal", "label": "结晶", "fromCol": 4, "toCol": 4 },
+    { "id": "ph-polish", "label": "精修交付", "fromCol": 5, "toCol": 5, "variant": "emphasis" }
+  ],
+  "mainPath": ["p0-gate", "p1-anatomy", "p2-introspect", "p3-lab", "p4-draft", "p5-polish"],
+  "nodes": [
+    { "id": "p0-gate", "lane": "auto-run", "col": 0, "type": "security", "label": "Phase 0 · 准入体检", "sublabel": "学徒自测 · 门槛筛查", "width": 132 },
+    { "id": "p1-anatomy", "lane": "auto-run", "col": 1, "type": "backend", "label": "Phase 1 · 全貌解剖", "sublabel": "脉络复述 · 因果分层", "width": 132 },
+    { "id": "p2-introspect", "lane": "auto-run", "col": 2, "type": "security", "label": "Phase 2 · 规律与考评", "sublabel": "2a 五大规律 · 2b 核心争议 · 2c 费曼闭环", "width": 200 },
+    { "id": "p3-lab", "lane": "auto-run", "col": 3, "type": "backend", "label": "Phase 3 · 实证实验", "sublabel": "原型验证 · 破坏实验", "width": 132 },
+    { "id": "p4-draft", "lane": "deliver", "col": 4, "type": "database", "label": "Phase 4 · 结晶起草", "sublabel": "精读笔记 · 映射报告 · 草稿快照", "width": 154 },
+    { "id": "p5-polish", "lane": "deliver", "col": 5, "type": "security", "label": "Phase 5 · 成文精修与交付", "sublabel": "四轮精修 · 保真核对 · 冷读盲评", "width": 172 }
+  ],
+  "edges": [
+    { "id": "e-p0-p1", "from": "p0-gate", "to": "p1-anatomy", "label": "自测无缝接入", "variant": "emphasis", "role": "main" },
+    { "id": "e-p1-p2", "from": "p1-anatomy", "to": "p2-introspect", "label": "脉络通透", "variant": "emphasis", "role": "main" },
+    { "id": "e-p2-p3", "from": "p2-introspect", "to": "p3-lab", "label": "变式复考全绿", "variant": "emphasis", "role": "main" },
+    { "id": "e-p3-p4", "from": "p3-lab", "to": "p4-draft", "label": "实测自证", "variant": "emphasis", "role": "main" },
+    { "id": "e-p4-p5", "from": "p4-draft", "to": "p5-polish", "label": "草稿快照", "variant": "emphasis", "role": "main" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "全程自治",
+      "items": [
+        "Phase 0 → 5 全程无人工阻塞，单次端到端交付全套沉淀物",
+        "Mentor × Learner 双代理在内部闭环完成全部考核"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "硬门禁",
+      "items": [
+        "同构变式复考全绿，方可放行进入 Phase 3",
+        "破坏性实验实测自证通过，方可结晶起草"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "成文精修 · 保真交付",
+      "items": [
+        "只改组织与表达、不增删事实",
+        "确定性保真核对 + Learner 冷读与两序盲评，成稿不劣于草稿"
+      ]
+    }
+  ]
+}
