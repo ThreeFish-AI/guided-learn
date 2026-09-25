@@ -3,7 +3,7 @@
 以**严师 Mentor + 学徒 Learner Subagent 双代理对抗内省**，带用户系统化精读并掌控论文、长文档、网页、视频、代码库等一手材料：
 全貌解剖（先梳理后总结）→ 领域底层规律与争议提炼 → 双 Agent 费曼考评闭环（白话推演/诊断/培优/变式复考）→ 最小原型实践与破坏性实验 → 经验沉淀入库。
 
-**核心创新**：学习全流程所有确认、答复、考核评估与通过性测试均由内置定制的 **Learner Subagent** 代管协助完成，消除中途交互阻塞；整套高价值知识与工程资产端到端自治交付，用户在获取完整沉淀后可按需发起追问与费曼自我考核。
+**核心创新**：学习全流程所有确认、答复、考核评估与通过性测试默认由内置定制的 **Learner Subagent** 代管协助完成，消除中途交互阻塞；整套高价值知识与工程资产端到端自治交付，用户在获取完整沉淀后可按需发起追问与费曼自我考核。
 
 **核心哲学**：**熵减（Entropy Reduction）**——以因果链路对抗信息碎片化，以子 Agent 内省对抗形式主义，以确定性实验对抗纸面空谈，以正交映射对抗重复造轮子。
 
@@ -40,7 +40,8 @@ ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # An
 
 显式调用：`/guided-learn <材料 URL 或路径>`（Claude Code 与 Antigravity IDE 通用）；或自然语言触发——
 「带我精读这篇论文」「先梳理全貌不要急着总结」「提炼这个领域的核心规律与争议」「以老师身份教我掌握 X」「帮我搞懂这份资料/视频并实践」。
-只要提供一手材料并希望深入掌握、接受考核或动手验证即会触发；快速摘要 / TL;DR、全文翻译、单点 API 查询、Bug 排查与代码评审不触发（触发契约以 [SKILL.md](SKILL.md) frontmatter `description` 为准，评测集见 [evals/trigger-evals.json](evals/trigger-evals.json)）。
+只要提供一手材料并希望深入掌握、接受考核或动手验证即会触发；快速摘要 / TL;DR、全文翻译、Bug 排查等不触发，完整排除清单以 [SKILL.md](SKILL.md) frontmatter `description` 为准（评测集见 [evals/trigger-evals.json](evals/trigger-evals.json)）。
+考核默认由 Learner Subagent 代管；想本人在流程中受考，直接说明即可（如「每节结束抽查我」），对应门禁改由你作答、标准不放松。
 
 **RSI 自我改进**：使用中由你或 Agent 发现的本 Skill 错误与改进项会被旁路记录、不打断学习；交付后由独立子 Agent 调研、改进与核验，门禁全绿后再按批向你确认一次（对外发布授权，不属学习门禁），方以 PR 回馈本仓库。需 `gh` 已登录，否则降级为本地 patch；持久授权与关闭方式见 [references/rsi-hook.md](references/rsi-hook.md#7-确认与提交)。
 
@@ -84,7 +85,7 @@ references/diagram-assets.md  # 图表资产管线规范（archify 优先 / Merm
 references/rsi-hook.md        # RSI 自我改进钩子协议（触发白名单 / 旁路捕获 / 核验门禁 / PR 模板 / 降级矩阵）
 evals/trigger-evals.json      # 触发评测集（10 应触发 + 10 近邻不触发，供 description 优化）
 evals/heldout-trigger-evals.json # held-out 触发评测集（10 + 10 边界探针；已参与一次 description 排除清单调参，此后视为 in-sample，泛化验证须另建新集）
-evals/evals.json              # 任务评测集（论文全流程 / 轻量材料裁剪 / TL;DR 边界）
+evals/evals.json              # 任务评测集（论文全流程 / 轻量材料裁剪 / TL;DR 边界 / 用户本人受考）
 assets/README.md              # 图表资产登记索引（spec / artifact 双 SHA-256）
 assets/mermaid/               # 图表文本源 SSOT（Mermaid .mmd，头部含溯源注释）
 assets/architecture/          # archify 交付产物（交互 HTML / 双主题 PNG / spec 与校验记录）

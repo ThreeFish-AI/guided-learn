@@ -43,6 +43,18 @@
         "输出为简短摘要，未展开五阶段流程",
         "未创建 .temp/ lab 目录，未写入 docs/，未执行 git commit"
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "带我吃透这篇 Hybrid Clock 短文：https://martinfowler.com/articles/patterns-of-distributed-systems/hybrid-clock.html 。讲完之后出题考我本人，我答不上来就换个角度再讲。",
+      "expected_output": "识别用户要求本人受考：此前阶段按轻量材料裁剪照常自治，2c 的费曼三维考评题改由用户作答，回合停在等待用户答复处，未由 Learner Subagent 代答，门禁标准不放松。",
+      "files": [],
+      "expectations": [
+        "考评前已完成研究范围界定，Phase 0 与 Phase 1 合并呈现",
+        "2c 的 3 道费曼三维考评题直接呈给用户，回合停在等待用户作答处",
+        "未由 Learner Subagent 代替用户作答 2c 考评题",
+        "未进入 Phase 3，未写入 docs/，未执行 git commit"
+      ]
     }
   ]
 }
