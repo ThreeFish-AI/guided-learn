@@ -6,7 +6,7 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "/Users/cm.huang/conductor/workspaces/guided-learn/seville/assets/architecture/dual-agent-adversarial-protocol.html",
+    "path": "assets/architecture/dual-agent-adversarial-protocol.html",
     "sha256": "2143c9f940a14b0f44c86416ff044f6893e7fb2be694480110329af4ac00e681",
     "bytes": 814444
   },

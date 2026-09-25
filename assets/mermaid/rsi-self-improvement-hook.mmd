@@ -2,11 +2,12 @@
 %% slug: rsi-self-improvement-hook
 %% type: flowchart LR
 %% derived: archify workflow v2 -> assets/architecture/rsi-self-improvement-hook.html
+%% fix: 交付阶段由 Phase 4 顺延为 Phase 5
 flowchart LR
     subgraph Host["主流程 · Mentor Agent"]
         T["触发白名单<br/>(用户指出 / 运行时证据)"]
         C["旁路捕获入账<br/>(backlog · 锚点 · 脱敏)"]
-        D["Phase 4 先交付<br/>(交付后才派发子 Agent)"]
+        D["Phase 5 先交付<br/>(交付后才派发子 Agent)"]
     end
     subgraph RSI["RSI 子 Agent · 隔离 clone"]
         S1["去重预检与根因调研<br/>(G0 · Chesterton's Fence)"]
