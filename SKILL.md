@@ -47,7 +47,7 @@ compatibility: 适用于 Claude Code、Antigravity 等支持 Agent Skills 的宿
 
 ## 阶段验收与自治流转对照总表
 
-Phase 0–3 免阻塞（0–2 由 Mentor ↔ Learner 内部闭环，3 由实测自验），Phase 4 完整交付，Post-Mastery 按需互动，RSI 交付后一次性确认。开工时将下表转写为进度清单（有 TodoWrite 等任务工具则用之），门禁全绿才勾选并进入下一阶段。
+Phase 0–3 免阻塞（0–2 由 Mentor ↔ Learner 内部闭环，3 由实测自验），Phase 4 完整交付，Post-Mastery 按需互动，RSI 交付后一次性确认。开工时将下表转写为进度清单（有 TodoWrite 等任务工具则用之，否则写入 `.temp/<topic>-lab/progress.md`），门禁全绿才勾选并进入下一阶段。
 
 | 阶段 | 验收标准 (Exit Criteria) |
 | :--- | :--- |
