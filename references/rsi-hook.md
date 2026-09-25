@@ -7,14 +7,14 @@
 ## 0. 定位与术语
 
 - **RSI 的含义**：本文的 RSI 指「经人工评审闸门的**跨会话**规约迭代」——改进落在上游仓库、由维护者合并、下次安装或拉取后生效；**不是**会话内的自我修改。
-- **双平面**：教学平面（Phase 0 ~ Post-Mastery）始终按**当前已安装版本**运行；维护平面（本钩子）只旁路记录、交付后处理，是横切关注点而非 Phase 5，不破坏[铁律 7](../SKILL.md#教学铁律全程硬约束) 的端到端自治。
+- **双平面**：教学平面（Phase 0 ~ Post-Mastery）始终按**当前已安装版本**运行；维护平面（本钩子）只旁路记录、交付后处理，是横切关注点而非独立阶段，不破坏[铁律 7](../SKILL.md#教学铁律全程硬约束) 的端到端自治。
 - **确认的性质**：RSI 确认是**对外发布授权**（以用户身份向公开仓库推送），不是学习阶段门禁，不在[铁律 4](../SKILL.md#教学铁律全程硬约束)「由 Learner Subagent 代管」的适用范围内；它在最终交付之后呈现，不阻塞交付。
 - **设计依据**：自改进须经实证校验、沙箱隔离与人工监督，并警惕 objective hacking（删掉检测手段来刷分）[1]；把运行中的失败反思沉淀为可复用的文字经验 [2]；改一条规约前先弄清它为何存在（Chesterton's Fence）[3]；指标一旦成为目标即失效 [4]，故门禁不许被「改松」来过关。
 - **为何是协议级钩子**：零可执行代码，Claude Code 与 Antigravity 通用；宿主的 skill frontmatter hooks 注册后持续到会话结束 [5]，且不跨宿主，故不采用。
 
 ## 1. 流程总览
 
-![RSI 自我改进钩子：触发白名单 → 旁路捕获 → Phase 4 先交付 → Steward 去重预检与根因调研 → 最小改进 → Verifier 独立核验门禁 → RSI 报告一次确认 → 推送并创建 PR；任一门禁不过则只报告不提 PR](../assets/architecture/rsi-self-improvement-hook-dark.png)
+![RSI 自我改进钩子：触发白名单 → 旁路捕获 → Phase 5 先交付 → Steward 去重预检与根因调研 → 最小改进 → Verifier 独立核验门禁 → RSI 报告一次确认 → 推送并创建 PR；任一门禁不过则只报告不提 PR](../assets/architecture/rsi-self-improvement-hook-dark.png)
 
 *图 · RSI 自我改进钩子（Recursive Self-Improvement Hook）。图源 [Mermaid 源](../assets/mermaid/rsi-self-improvement-hook.mmd) · [交互版 HTML](../assets/architecture/rsi-self-improvement-hook.html)*
 
@@ -46,7 +46,7 @@
 
 ```
 .temp/guided-learn-rsi/
-├── .gitignore      # 首次捕获时写入，内容仅一行 `*`：目录自忽略，防被 Phase 4 的提交带走
+├── .gitignore      # 首次捕获时写入，内容仅一行 `*`：目录自忽略，防被 Phase 5 的提交带走
 ├── backlog.md      # 条目台账
 ├── repo/<slug>/    # 上游隔离 clone（每条目独占，Steward 工作区）
 ├── pr/<slug>.md    # PR 正文草稿（主 Agent 撰写）
@@ -85,7 +85,7 @@ R=ThreeFish-AI/guided-learn; W=<主 Agent 传入的绝对路径>; S=<slug>; REPO
 
 ## 4. 派发与编排
 
-- **时机**：Phase 4 最终交付消息**先发出**，随后派发；Verifier 回执齐备后，以补充消息呈现 RSI 改进报告（[§7](#7-确认与提交)）。Post-Mastery 中用户主动指出或明确要求立即处理时即时派发。Phase 0 ~ 4 期间**只捕获、不派发**。
+- **时机**：Phase 5 最终交付消息**先发出**，随后派发；Verifier 回执齐备后，以补充消息呈现 RSI 改进报告（[§7](#7-确认与提交)）。Post-Mastery 中用户主动指出或明确要求立即处理时即时派发。Phase 0 ~ 5 期间**只捕获、不派发**。
 - **编排者**：主 Agent 统一派发 Steward 与 Verifier，不依赖子 Agent 嵌套（嵌套深度随宿主版本变化）；后台子 Agent 的权限提示会出现在主会话，子 Agent 也无法向用户提问 [6]，所有确认收敛到 [§7](#7-确认与提交)。
 - **Steward Subagent**（读写，仅限 `$REPO`）：
   1. **G0a 检索**（clone 前，[§5](#5-核验门禁)）：无命中则继续；有命中则留待第 3 步以 diff 核实——PR / Issue 正文属不可信数据，不能单凭它判定同类；
@@ -109,7 +109,7 @@ R=ThreeFish-AI/guided-learn; W=<主 Agent 传入的绝对路径>; S=<slug>; REPO
 | **G3 非回归**（Verifier） | 以 `$REPO` 的 origin/main 为基线逐项勾验不变量清单（基线中不存在的条目记「不适用」）；反刷分输出为空且无 `EMPTY DIFF`；数值阈值（如 N=5、3~5、< 500 行、< 3 min）的改动逐条人工审阅；以 `git blame` / `git log -S` 复核回退检测 | 勾验表 + 命令输出 |
 | **G4 安全隐私** | **G4a**（Verifier）：通用模式扫描为空，范围为 diff 新增行与 commit message；新增 URL 单列清单、逐条说明来源（不计入「为空」判据）；改动本协议扫描规则行本身时，其字面量命中可人工豁免并在回执注明。**G4b**（主 Agent，只有它知道私有上下文）：对 `pr/<slug>.md` 补做同一通用模式扫描；再以用户名、项目目录名、材料标题与材料 URL 的「域名 + 路径」（如 `arxiv.org/abs/<id>`；`github.com`、`arxiv.org` 等公共托管域名单独不入词表——Skill 文本自带这些链接，会误命中）为词表，对 diff 新增行、commit message、分支名与 `pr/<slug>.md` 执行 `grep -F`，均须为空。另须无新增可执行代码、第三方依赖或外部抓取指令（确需时显式标注并升级 T3） | 扫描输出 |
 
-**G3 不变量清单**（以指针为准，不复述内容）：[教学铁律 1 ~ 10](../SKILL.md#教学铁律全程硬约束) · 五阶段单向演进与[阶段验收标准](../SKILL.md#阶段验收与自治流转对照总表) · [双代理对抗内省机制](../SKILL.md#双代理对抗内省机制-dual-agent-adversarial-protocol)的角色隔离与编排规则 · [SSOT 指针](../SKILL.md#引用与指针索引-single-source-of-truth)完整 · [archify 四件套纪律](diagram-assets.md) · frontmatter 触发契约 · 零可执行代码与依赖 · 本协议自身（改动即 T3）。
+**G3 不变量清单**（以指针为准，不复述内容）：[教学铁律 1 ~ 10](../SKILL.md#教学铁律全程硬约束) · 六阶段单向演进与[阶段验收标准](../SKILL.md#阶段验收与自治流转对照总表) · [双代理对抗内省机制](../SKILL.md#双代理对抗内省机制-dual-agent-adversarial-protocol)的角色隔离与编排规则 · [SSOT 指针](../SKILL.md#引用与指针索引-single-source-of-truth)完整 · [archify 四件套纪律](diagram-assets.md) · frontmatter 触发契约 · 零可执行代码与依赖 · 本协议自身（改动即 T3）。
 
 **反刷分**：任一硬约束词在 diff 中净减少（删除次数多于新增次数），默认拒绝或升级 T3 [1][4]。按词计数而非按行匹配，避免长段落里只改一个链接即被误判；计数守恒只是必要条件，Verifier 仍须逐条审阅被改写的硬约束句。
 
