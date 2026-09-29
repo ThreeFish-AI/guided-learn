@@ -1,6 +1,6 @@
 # 图表资产规范（Phase 4 · archify 优先）
 
-> Phase 4 沉淀笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
+> Phase 4 精读笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
 > 两个条件分开判定：① 宿主未安装 archify、或图类型无 archify 对应（erDiagram/timeline/mindmap/
 > quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 在 ① 未命中时，项目有无
 > 资产管线决定走第一节还是第四节。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
@@ -51,5 +51,5 @@
 
 ## 四、降级路径（无 archify、无对应图型或项目无资产管线）
 
-- 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在笔记头部注明未入管线的原因。
+- 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在 lab 进度清单注明未入管线的原因（不写入正文）。
 - 图类型无对应：原地保留 Mermaid（不建 .mmd，避免文本源双份）。

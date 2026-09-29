@@ -4,59 +4,188 @@
   "meta": {
     "title": "六阶段自治演进流水线",
     "locale": "zh-CN",
-    "quality_profile": "showcase"
+    "quality_profile": "showcase",
+    "output": "assets/architecture/six-phase-autonomous-pipeline.html"
   },
   "lanes": [
-    { "id": "auto-run", "label": "自治执行" },
-    { "id": "deliver", "label": "结晶交付" }
+    {
+      "id": "auto-run",
+      "label": "通读 · 理解 · 实证"
+    },
+    {
+      "id": "deliver",
+      "label": "成文 · 验收 · 交付"
+    }
   ],
   "phases": [
-    { "id": "ph-intake", "label": "准入", "fromCol": 0, "toCol": 0 },
-    { "id": "ph-anatomy", "label": "解剖", "fromCol": 1, "toCol": 1 },
-    { "id": "ph-introspect", "label": "内省闭环", "fromCol": 2, "toCol": 2, "variant": "emphasis" },
-    { "id": "ph-empirical", "label": "实证", "fromCol": 3, "toCol": 3 },
-    { "id": "ph-crystal", "label": "结晶", "fromCol": 4, "toCol": 4 },
-    { "id": "ph-polish", "label": "精修交付", "fromCol": 5, "toCol": 5, "variant": "emphasis" }
+    {
+      "id": "ph-read",
+      "label": "通读补读",
+      "fromCol": 0,
+      "toCol": 0,
+      "variant": "emphasis"
+    },
+    {
+      "id": "ph-anatomy",
+      "label": "解剖",
+      "fromCol": 1,
+      "toCol": 1
+    },
+    {
+      "id": "ph-distill",
+      "label": "规律与命题",
+      "fromCol": 2,
+      "toCol": 2
+    },
+    {
+      "id": "ph-empirical",
+      "label": "实证",
+      "fromCol": 3,
+      "toCol": 3
+    },
+    {
+      "id": "ph-draft",
+      "label": "起草对账",
+      "fromCol": 4,
+      "toCol": 4
+    },
+    {
+      "id": "ph-polish",
+      "label": "精修验收",
+      "fromCol": 5,
+      "toCol": 5,
+      "variant": "emphasis"
+    }
   ],
-  "mainPath": ["p0-gate", "p1-anatomy", "p2-introspect", "p3-lab", "p4-draft", "p5-polish"],
+  "mainPath": [
+    "p0-read",
+    "p1-anatomy",
+    "p2-distill",
+    "p3-lab",
+    "p4-draft",
+    "p5-polish"
+  ],
   "nodes": [
-    { "id": "p0-gate", "lane": "auto-run", "col": 0, "type": "security", "label": "Phase 0 · 准入体检", "sublabel": "学徒自测 · 门槛筛查", "width": 132 },
-    { "id": "p1-anatomy", "lane": "auto-run", "col": 1, "type": "backend", "label": "Phase 1 · 全貌解剖", "sublabel": "脉络复述 · 因果分层", "width": 132 },
-    { "id": "p2-introspect", "lane": "auto-run", "col": 2, "type": "security", "label": "Phase 2 · 规律与考评", "sublabel": "2a 五大规律 · 2b 核心争议 · 2c 费曼闭环", "width": 200 },
-    { "id": "p3-lab", "lane": "auto-run", "col": 3, "type": "backend", "label": "Phase 3 · 实证实验", "sublabel": "原型验证 · 破坏实验", "width": 132 },
-    { "id": "p4-draft", "lane": "deliver", "col": 4, "type": "database", "label": "Phase 4 · 结晶起草", "sublabel": "精读笔记 · 映射报告 · 草稿快照", "width": 154 },
-    { "id": "p5-polish", "lane": "deliver", "col": 5, "type": "security", "label": "Phase 5 · 成文精修与交付", "sublabel": "四轮精修 · 保真核对 · 冷读盲评", "width": 172 }
+    {
+      "id": "p0-read",
+      "lane": "auto-run",
+      "col": 0,
+      "type": "security",
+      "label": "Phase 0 · 通读与补读",
+      "sublabel": "覆盖表 · 探针 · 缺口补读",
+      "width": 150
+    },
+    {
+      "id": "p1-anatomy",
+      "lane": "auto-run",
+      "col": 1,
+      "type": "backend",
+      "label": "Phase 1 · 全貌解剖",
+      "sublabel": "因果分层 · 片段复述",
+      "width": 132
+    },
+    {
+      "id": "p2-distill",
+      "lane": "auto-run",
+      "col": 2,
+      "type": "security",
+      "label": "Phase 2 · 规律与四测命题",
+      "sublabel": "2a 规律 · 2b 争议 · 2c 四测题库",
+      "width": 172
+    },
+    {
+      "id": "p3-lab",
+      "lane": "auto-run",
+      "col": 3,
+      "type": "backend",
+      "label": "Phase 3 · 原型实验",
+      "sublabel": "破坏实验 · 预测实跑",
+      "width": 132
+    },
+    {
+      "id": "p4-draft",
+      "lane": "deliver",
+      "col": 4,
+      "type": "database",
+      "label": "Phase 4 · 起草与对账",
+      "sublabel": "通俗拆解 · 信源冻结 · 快照",
+      "width": 152
+    },
+    {
+      "id": "p5-polish",
+      "lane": "deliver",
+      "col": 5,
+      "type": "security",
+      "label": "Phase 5 · 精修与交付",
+      "sublabel": "保真核对 · 盲评 · 外行四测",
+      "width": 160
+    }
   ],
   "edges": [
-    { "id": "e-p0-p1", "from": "p0-gate", "to": "p1-anatomy", "label": "自测无缝接入", "variant": "emphasis", "role": "main" },
-    { "id": "e-p1-p2", "from": "p1-anatomy", "to": "p2-introspect", "label": "脉络通透", "variant": "emphasis", "role": "main" },
-    { "id": "e-p2-p3", "from": "p2-introspect", "to": "p3-lab", "label": "变式复考全绿", "variant": "emphasis", "role": "main" },
-    { "id": "e-p3-p4", "from": "p3-lab", "to": "p4-draft", "label": "实测自证", "variant": "emphasis", "role": "main" },
-    { "id": "e-p4-p5", "from": "p4-draft", "to": "p5-polish", "label": "草稿快照", "variant": "emphasis", "role": "main" }
+    {
+      "id": "e-p0-p1",
+      "from": "p0-read",
+      "to": "p1-anatomy",
+      "label": "通读覆盖齐全",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "e-p1-p2",
+      "from": "p1-anatomy",
+      "to": "p2-distill",
+      "label": "脉络通透",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "e-p2-p3",
+      "from": "p2-distill",
+      "to": "p3-lab",
+      "label": "答案键落盘",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "e-p3-p4",
+      "from": "p3-lab",
+      "to": "p4-draft",
+      "label": "实测自证",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "e-p4-p5",
+      "from": "p4-draft",
+      "to": "p5-polish",
+      "label": "源稿对账全绿",
+      "variant": "emphasis",
+      "role": "main"
+    }
   ],
   "cards": [
     {
       "dot": "cyan",
-      "title": "全程自治",
+      "title": "全程自治 · 唯一交付",
       "items": [
-        "Phase 0 → 5 全程无人工阻塞，单次端到端交付全套沉淀物",
-        "Mentor × Learner 双代理在内部闭环完成全部考核"
+        "Phase 0 → 5 全程无人工阻塞，只交付一份《精读与通俗拆解》",
+        "过程记录只留 lab，《机制映射报告》仅按需产出"
       ]
     },
     {
       "dot": "rose",
       "title": "硬门禁",
       "items": [
-        "同构变式复考全绿，方可放行进入 Phase 3",
-        "破坏性实验实测自证通过，方可结晶起草"
+        "源稿对账全绿，方可草稿快照",
+        "外行四测出闸方可交付；读懂项未过须在交付首段声明"
       ]
     },
     {
       "dot": "emerald",
-      "title": "成文精修 · 保真交付",
+      "title": "只改表达 · 事实可溯",
       "items": [
-        "只改组织与表达、不增删事实",
-        "确定性保真核对 + Learner 冷读与两序盲评，成稿不劣于草稿"
+        "精修只改组织与表达、不增删事实",
+        "外行补阙只复用已登记出处，并经 Checker 增量对账"
       ]
     }
   ]

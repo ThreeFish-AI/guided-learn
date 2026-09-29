@@ -4,7 +4,8 @@
   "meta": {
     "title": "双代理对抗内省机制（Dual-Agent Adversarial Protocol）",
     "locale": "zh-CN",
-    "quality_profile": "showcase"
+    "quality_profile": "showcase",
+    "output": "assets/architecture/dual-agent-adversarial-protocol.html"
   },
   "lanes": [
     {
@@ -13,17 +14,17 @@
     },
     {
       "id": "mentor",
-      "label": "Mentor · 严师主导"
+      "label": "Mentor · 作者方"
     },
     {
-      "id": "learner",
-      "label": "Learner · 学徒代管"
+      "id": "checker",
+      "label": "检验方 · 全新派发"
     }
   ],
   "groups": [
     {
-      "id": "remediation-gate",
-      "label": "培优与出闸闭环",
+      "id": "repair-loop",
+      "label": "修文档闭环",
       "lane": "mentor",
       "fromCol": 4,
       "toCol": 5,
@@ -32,15 +33,17 @@
   ],
   "mainPath": [
     "source-material",
+    "mentor-read",
     "mentor-anatomy",
-    "learner-recite",
+    "learner-snippet",
     "mentor-distill",
-    "mentor-exam",
-    "learner-feynman",
-    "mentor-remedy",
+    "mentor-draft",
+    "checker-audit",
+    "learner-four-tests",
+    "mentor-repair",
     "learner-retest",
     "mentor-verdict",
-    "prototype-lab"
+    "deliverable"
   ],
   "nodes": [
     {
@@ -48,17 +51,17 @@
       "lane": "io",
       "col": 0,
       "type": "external",
-      "label": "一手材料",
-      "sublabel": "论文 / 文档 / 代码库",
-      "width": 132
+      "label": "一手材料 + 补读信源",
+      "sublabel": "论文 / 文档 / 代码库 / 视频",
+      "width": 150
     },
     {
-      "id": "learner-selfcheck",
-      "lane": "learner",
+      "id": "mentor-read",
+      "lane": "mentor",
       "col": 0,
-      "type": "frontend",
-      "label": "门槛自查作答",
-      "sublabel": "前置概念 3 题自测",
+      "type": "backend",
+      "label": "通读与补读",
+      "sublabel": "覆盖表 · 缺口单",
       "tag": "Phase 0",
       "width": 128
     },
@@ -67,18 +70,18 @@
       "lane": "mentor",
       "col": 1,
       "type": "backend",
-      "label": "梳理全貌与因果链",
-      "sublabel": "Tier 分层精读",
+      "label": "全貌解剖",
+      "sublabel": "因果分层 · 讲解片段",
       "tag": "Phase 1",
       "width": 128
     },
     {
-      "id": "learner-recite",
-      "lane": "learner",
+      "id": "learner-snippet",
+      "lane": "checker",
       "col": 1,
       "type": "frontend",
-      "label": "白话复述与主线自验",
-      "sublabel": "2 道因果核心题",
+      "label": "Learner 讲解片段复述",
+      "sublabel": "不借类比 · 因果题",
       "tag": "Phase 1",
       "width": 150
     },
@@ -87,147 +90,157 @@
       "lane": "mentor",
       "col": 2,
       "type": "backend",
-      "label": "提炼规律与界定范围",
-      "sublabel": "五大规律 + 核心争议",
+      "label": "规律 · 争议 · 四测命题",
+      "sublabel": "答案键先于派发落盘",
       "tag": "Phase 2",
-      "width": 140
+      "width": 156
     },
     {
-      "id": "mentor-exam",
+      "id": "mentor-draft",
       "lane": "mentor",
       "col": 3,
       "type": "backend",
-      "label": "费曼三维考评出题",
-      "sublabel": "三维正交大题",
-      "tag": "Phase 2c",
+      "label": "起草精读笔记",
+      "sublabel": "按读者的问题组织",
+      "tag": "Phase 4",
       "width": 128
     },
     {
-      "id": "learner-feynman",
-      "lane": "learner",
+      "id": "checker-audit",
+      "lane": "checker",
+      "col": 3,
+      "type": "security",
+      "label": "Checker 源稿对账",
+      "sublabel": "支持度 · 失真八型 · 照搬",
+      "tag": "Phase 4",
+      "width": 160
+    },
+    {
+      "id": "learner-four-tests",
+      "lane": "checker",
       "col": 4,
       "type": "frontend",
-      "label": "费曼三维独立作答",
-      "sublabel": "全程白话独立推演",
-      "tag": "Phase 2c",
-      "width": 128
+      "label": "Learner 外行四测",
+      "sublabel": "读懂 · 看会 · 听知 · 学通",
+      "tag": "Phase 5",
+      "width": 160
     },
     {
-      "id": "mentor-remedy",
+      "id": "mentor-repair",
       "lane": "mentor",
       "col": 4,
       "type": "backend",
-      "label": "薄弱点诊断与讲授",
-      "sublabel": "缺陷归因 + 三板斧",
-      "tag": "Phase 2c",
-      "width": 128
+      "label": "归因文档缺陷 · 就地修改",
+      "sublabel": "外行补阙逐条登记",
+      "tag": "Phase 5",
+      "width": 160
     },
     {
       "id": "learner-retest",
-      "lane": "learner",
+      "lane": "checker",
       "col": 5,
       "type": "frontend",
-      "label": "认知修正与变式应试",
-      "sublabel": "同构变式题再作答",
-      "tag": "Phase 2c",
-      "width": 140
+      "label": "Learner 同构变式复测",
+      "sublabel": "全新代理 · 至多 2 轮",
+      "tag": "Phase 5",
+      "width": 150
     },
     {
       "id": "mentor-verdict",
       "lane": "mentor",
       "col": 5,
       "type": "security",
-      "label": "变式复考与出闸裁决",
-      "sublabel": "变式出题 · 全绿判定",
-      "tag": "Phase 2c",
-      "width": 140
+      "label": "出闸裁决",
+      "sublabel": "有界闭合 · 如实声明",
+      "tag": "Phase 5",
+      "width": 128
     },
     {
-      "id": "prototype-lab",
+      "id": "deliverable",
       "lane": "io",
       "col": 5,
       "type": "cloud",
-      "label": "原型实验与退化实测",
-      "sublabel": "破坏实验 · 退化对照",
-      "tag": "Phase 3",
-      "width": 140
+      "label": "交付《精读与通俗拆解》",
+      "sublabel": "唯一交付物",
+      "width": 160
     }
   ],
   "edges": [
     {
-      "id": "dispatch-mentor",
+      "id": "ingest",
       "from": "source-material",
+      "to": "mentor-read",
+      "role": "main"
+    },
+    {
+      "id": "read-to-anatomy",
+      "from": "mentor-read",
       "to": "mentor-anatomy",
       "role": "main"
     },
     {
-      "id": "dispatch-learner",
-      "from": "source-material",
-      "to": "learner-selfcheck",
-      "role": "branch",
-      "variant": "dashed"
-    },
-    {
-      "id": "blindspot-align",
-      "from": "learner-selfcheck",
-      "to": "mentor-anatomy",
-      "label": "盲区对齐",
-      "role": "branch",
-      "variant": "dashed"
-    },
-    {
-      "id": "guide-recite",
+      "id": "snippet-out",
       "from": "mentor-anatomy",
-      "to": "learner-recite",
+      "to": "learner-snippet",
+      "label": "讲解片段",
       "role": "main"
     },
     {
-      "id": "mastery-confirm",
-      "from": "learner-recite",
+      "id": "snippet-pass",
+      "from": "learner-snippet",
       "to": "mentor-distill",
-      "label": "脉络掌握",
+      "label": "复述通过",
       "role": "main"
     },
     {
-      "id": "distill-to-exam",
+      "id": "keys-frozen",
       "from": "mentor-distill",
-      "to": "mentor-exam",
+      "to": "mentor-draft",
+      "label": "答案键落盘",
       "role": "main"
     },
     {
-      "id": "exam-paper",
-      "from": "mentor-exam",
-      "to": "learner-feynman",
-      "label": "考评题",
+      "id": "audit-queue",
+      "from": "mentor-draft",
+      "to": "checker-audit",
+      "label": "待核表",
       "role": "main"
     },
     {
-      "id": "answer-sheet",
-      "from": "learner-feynman",
-      "to": "mentor-remedy",
-      "label": "应答卷",
-      "role": "main",
-      "route": "drop"
+      "id": "audit-green",
+      "from": "checker-audit",
+      "to": "learner-four-tests",
+      "label": "对账全绿 · 精修定稿",
+      "role": "main"
     },
     {
-      "id": "remedy-loop",
-      "from": "mentor-remedy",
+      "id": "fail-locate",
+      "from": "learner-four-tests",
+      "to": "mentor-repair",
+      "label": "未过题与定位",
+      "role": "main"
+    },
+    {
+      "id": "repair-retest",
+      "from": "mentor-repair",
       "to": "learner-retest",
-      "label": "诊断与讲授 + 变式题",
-      "role": "main"
+      "label": "修后文档 + 变式题",
+      "role": "main",
+      "fromSide": "right",
+      "toSide": "top"
     },
     {
       "id": "retest-answer",
       "from": "learner-retest",
       "to": "mentor-verdict",
-      "label": "复考作答",
+      "label": "复测作答",
       "role": "main"
     },
     {
-      "id": "allgreen-release",
+      "id": "release",
       "from": "mentor-verdict",
-      "to": "prototype-lab",
-      "label": "全绿放行",
+      "to": "deliverable",
+      "label": "出闸",
       "role": "main",
       "variant": "emphasis"
     }
@@ -235,26 +248,26 @@
   "cards": [
     {
       "dot": "cyan",
-      "title": "免阻塞闭环",
+      "title": "只读输入（输入隔离）",
       "items": [
-        "考核全部在 Mentor ↔ Learner 内部闭环完成，绝不向用户抛题阻塞流程",
-        "全流程自治推进，用户在最终交付后按需自我考核与费曼追问"
+        "Learner 只拿文档与题面，Checker 只拿信源快照与待核表",
+        "绝不附答案键、评分要点与 Mentor 推理"
       ]
     },
     {
       "dot": "violet",
-      "title": "费曼三维考评",
+      "title": "修文档，不补课",
       "items": [
-        "白话转述 / 因果本质差异 / 极限场景推演三道正交大题",
-        "严禁背诵行话，作答暴露薄弱点即触发针对性培优"
+        "未过即归因到文档缺陷、就地修改",
+        "换同构变式题由全新代理复测，至多 2 轮"
       ]
     },
     {
       "dot": "emerald",
-      "title": "全绿门禁",
+      "title": "代理通过只是必要条件",
       "items": [
-        "薄弱点诊断 + 三板斧讲授后，以同构变式题复考",
-        "复考未全绿绝不放行 Phase 3 原型实验"
+        "LLM 代理比真人更易答对，结论如实说明由代理验收",
+        "读懂项未过不得静默放行，须在交付首段声明"
       ]
     }
   ]
