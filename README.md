@@ -80,7 +80,7 @@ ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # An
 
 ```
 SKILL.md                      # 核心契约：frontmatter 触发描述、教学铁律、双代理协议、易错点、验收总表与六阶段流水线（Agent 激活时加载）
-references/lecture-format.md  # 讲授/考评模板（全貌三问/类比使用规约与难点概念遴选/规律/争议/费曼考评实录/用户自测套件/笔记与映射报告骨架）
+references/lecture-format.md  # 讲授/考评模板（全貌三问/类比使用规约与难点概念遴选/规律/争议/费曼考评实录/用户自测套件/笔记与映射报告骨架/换代重写协议）
 references/prototype-lab.md   # 最小原型实验室方法论（确定性 mock / 场景设计 / 破坏性实验纪律）
 references/diagram-assets.md  # 图表资产管线规范（archify 优先 / Mermaid 降级）
 references/final-polish.md    # 成文精修规约（五层诊断清单 / 四轮精修 / 确定性保真核对 / 冷读盲评 / 过度精修反模式）
