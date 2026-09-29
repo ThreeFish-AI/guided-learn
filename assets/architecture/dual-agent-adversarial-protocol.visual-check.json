@@ -7,8 +7,8 @@
   "visualReview": "pending",
   "artifact": {
     "path": "assets/architecture/dual-agent-adversarial-protocol.html",
-    "sha256": "2143c9f940a14b0f44c86416ff044f6893e7fb2be694480110329af4ac00e681",
-    "bytes": 814444
+    "sha256": "7c9fa097fefdf6b94034a7df5f559eb80ae1086ba60951204749f0b8983b077b",
+    "bytes": 814432
   },
   "state": {
     "detail": "read",
