@@ -92,7 +92,7 @@ Phase 0–4 免阻塞，Phase 5 完整交付，Post-Mastery 按需互动。开�
 ### Phase 5 · 成文精修与交付（读 [final-polish](references/final-polish.md)）
 
 1. **精修**：按 final-polish 完成精修、保真核对、盲评与外行四测；只改组织与表达，不增删事实（外行补阙例外）。
-2. **归档**：项目有约定时同步知识索引、issue 记录与 memory；按项目或用户的提交约定（如 `/commit`）原子化提交，无约定则原生 `git commit`、只暂存本次产出、不 push，非 git 项目跳过并说明。
+2. **归档**：项目有约定时同步知识索引、issue 记录与 memory；整篇重写或重排编号的笔记先按 [final-polish](references/final-polish.md) §4.4 做入站引用全量扫描（下游「短名 §N」指针与链接逐条对账，改到零 STALE）；按项目或用户的提交约定（如 `/commit`）原子化提交，无约定则原生 `git commit`、只暂存本次产出、不 push，非 git 项目跳过并说明。
 3. **交付**：交付总结结论先行并附成果索引，文档与对话末尾附「用户自测与费曼研讨套件」（≤3 题）；RSI backlog 非空时另发「RSI 改进报告」。
 
 ## 引用与指针索引 (Single Source of Truth)
