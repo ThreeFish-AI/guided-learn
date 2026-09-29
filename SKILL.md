@@ -63,7 +63,7 @@ Phase 0–4 免阻塞，Phase 5 完整交付，Post-Mastery 按需互动。开�
 
 六阶段严格单向演进；每阶段开始前先读取所列 reference。
 
-### Phase 0 · 通读与补读（读 source-reading §0–§6）
+### Phase 0 · 通读与补读（读 source-reading §0–§6、§10）
 
 按分流矩阵经全文通道通读材料、存快照、填覆盖表并跑新鲜度探针；提炼前置概念（≤3 项，一句话讲清是什么、为何必须），材料未给外行可懂解释即开缺口单补读。
 
@@ -81,7 +81,7 @@ Phase 0–4 免阻塞，Phase 5 完整交付，Post-Mastery 按需互动。开�
 
 在 `.temp/<topic>-lab/` 写纯标准库确定性原型并跑通 selftest；逐一拆核心机制（≤5 个）实跑记录退化，并实跑预测题新输入作答案键；产出存 lab、回灌精读笔记。
 
-### Phase 4 · 起草与源稿对账（读 lecture-format §1.1 标题禁令与 §5–§6、source-reading §7–§9、[diagram-assets](references/diagram-assets.md)）
+### Phase 4 · 起草与源稿对账（读 lecture-format §1.1 标题禁令与 §5–§6、source-reading §6–§9、[diagram-assets](references/diagram-assets.md)）
 
 1. **精读笔记**：以 lab 工作记录为输入、按读者的问题组织，按 §5 模板起草至项目 `docs/`，回灌 Phase 3 真实日志。
 2. **《机制映射报告》**：仅用户明确要求映射时按 §6 模板产出。
