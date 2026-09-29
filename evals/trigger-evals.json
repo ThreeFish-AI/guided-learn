@@ -9,6 +9,8 @@
   {"query": "先梳理全貌，不要急着总结——这篇 Spanner 论文我读了两遍还是串不起来，帮我把各部分之间的因果关系理清楚。", "should_trigger": true},
   {"query": "公司内部这份 200 页的支付网关架构规格 docs/spec/payment-gateway-v3.md，我下周要接手这块，带我深入学一遍，做到能自己推演极端场景下会在哪里先崩。", "should_trigger": true},
   {"query": "想用费曼学习法把 Paxos Made Simple 啃下来：你先讲透，再出题考我、找出我的薄弱点，最后给我留几道自测题。", "should_trigger": true},
+  {"query": "带我精读 Raft 论文 In Search of an Understandable Consensus Algorithm，写成外行也能看懂的拆解。", "should_trigger": true},
+  {"query": "Amazon Dynamo 论文我放在 ~/papers/dynamo-sosp07.pdf，帮我写成一份外行也能一读就懂、照着就能推演的精读拆解，必要时自己去查后来的勘误与最新资料补上。", "should_trigger": true},
   {"query": "帮我用三五句话总结一下这篇论文的核心结论就行 https://arxiv.org/abs/2303.11366 ，赶时间开会用。", "should_trigger": false},
   {"query": "把这篇 Reflexion 论文全文翻译成中文，保留公式和图表编号。", "should_trigger": false},
   {"query": "把 Attention Is All You Need 这篇论文做成一个 5 分钟的动效科普视频，要配音和字幕。", "should_trigger": false},
@@ -18,5 +20,7 @@
   {"query": "Python 的 asyncio.gather 和 asyncio.wait 有什么区别？给个例子。", "should_trigger": false},
   {"query": "我照着 Raft 论文实现的选举逻辑有 bug，节点一直反复发起选举，帮我看看 raft/election.go 哪里写错了。", "should_trigger": false},
   {"query": "简单讲一下什么是向量数据库，一两段话就行。", "should_trigger": false},
-  {"query": "review 一下我这个 PR 的改动，重点看并发安全和锁的粒度。", "should_trigger": false}
+  {"query": "review 一下我这个 PR 的改动，重点看并发安全和锁的粒度。", "should_trigger": false},
+  {"query": "不用查资料，用大白话聊聊什么是向量时钟，我能听懂就行。", "should_trigger": false},
+  {"query": "帮我核实这篇论文的结论有没有被后续研究推翻，列个清单就行。", "should_trigger": false}
 ]
