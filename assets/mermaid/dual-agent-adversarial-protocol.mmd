@@ -1,37 +1,43 @@
-%% source: SKILL.md §双代理对抗内省机制 (lines 53-84 @ HEAD f4941e9)
+%% source: SKILL.md §双代理对抗内省机制 @ HEAD 83dd68b（本 PR 改写）
 %% slug: dual-agent-adversarial-protocol
 %% type: flowchart LR
 %% derived: archify workflow v2 -> assets/architecture/dual-agent-adversarial-protocol.html
 %% fix: L1 wording revised from “Phase 1 总类比复述与主线自验” to “Phase 1 白话复述与主线自验” to match the current SKILL.md protocol; source revision retained because the original Mermaid block was removed in later revisions.
+%% fix: Learner 由受考学徒改为只读文档的外行读者代理；新增 Checker 源稿对账；三板斧改为修文档，考评闭环改为外行四测
 flowchart LR
-    subgraph Mentor["Mentor Agent (严师主导)"]
-        M1["梳理全貌与因果链"]
-        M2["提炼底层规律与争议"]
-        M3["界定研究范围定义域"]
-        M4["费曼三维考评出题"]
-        M5["四类缺陷诊断 & 三板斧教授"]
-        M6["同构变式复考出题 & 出闸裁决"]
+    subgraph IO["输入与交付"]
+        S["一手材料 + 补读信源"]
+        D["交付《精读与通俗拆解》"]
     end
 
-    subgraph Learner["Learner Subagent (求知学徒代管)"]
-        L0["Phase 0 门槛自查作答"]
-        L1["Phase 1 白话复述与主线自验"]
-        L2["Phase 2c 费曼三维独立作答<br/>(白话/因果/极限推演)"]
-        L3["认知修正 & 变式复考应试"]
+    subgraph Mentor["Mentor · 作者方"]
+        M1["通读与补读"]
+        M2["全貌解剖"]
+        M3["规律 · 争议 · 四测命题"]
+        M4["起草精读笔记"]
+        M5["归因文档缺陷 · 就地修改"]
+        M6["出闸裁决"]
     end
 
-    M0["一手材料"] --> M1 & L0
-    L0 -->|盲区对齐| M1
-    M1 --> L1
-    L1 -->|脉络掌握| M2
-    M2 --> M3 --> M4
-    M4 -->|考评题| L2
-    L2 -->|应答卷| M5
-    M5 -->|诊断与讲授 + 变式题| L3
-    L3 -->|复考作答| M6
-    M6 -->|全绿放行| P3["Phase 3 原型实验与退化实测"]
+    subgraph Checkers["检验方 · 全新派发（只读输入）"]
+        L0["Learner 讲解片段复述"]
+        C1["Checker 源稿对账<br/>(支持度 · 失真八型 · 照搬)"]
+        L1["Learner 外行四测<br/>(读懂 · 看会 · 听知 · 学通)"]
+        L2["Learner 同构变式复测"]
+    end
+
+    S --> M1 --> M2
+    M2 -->|讲解片段| L0
+    L0 -->|复述通过| M3
+    M3 -->|答案键落盘| M4
+    M4 -->|待核表| C1
+    C1 -->|对账全绿 · 精修定稿| L1
+    L1 -->|未过题与定位| M5
+    M5 -->|修后文档 + 变式题| L2
+    L2 -->|复测作答| M6
+    M6 -->|出闸| D
 
     classDef mentor fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
     classDef learner fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#f8fafc;
     class M1,M2,M3,M4,M5,M6 mentor;
-    class L0,L1,L2,L3 learner;
+    class L0,C1,L1,L2 learner;
