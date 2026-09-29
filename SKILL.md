@@ -42,6 +42,7 @@ compatibility: 适用于 Claude Code、Antigravity 等支持 Agent Skills 的宿
 | 视频 | 逐段 transcript，标记关键操作与演示节点 | Phase 3 改为复述关键流程 + 实机复刻核心操作 |
 | 代码库 | 架构骨架与核心数据结构作为 Tier 1 | Phase 3 收敛为跑通最小端到端闭环 |
 | 轻量材料（博客短文等） | 通读全文，提取核心论点与假设前提 | Phase 0~1 合并；Phase 3 降级为设计预测题，不写代码 |
+| 同一材料再精读（上游实质换代且既有笔记在场） | 新旧版对照：新篇全文 + 旧版 diff | 完整 Phase 0 ~ 5，Phase 0 对照摄取后、Phase 1 遴选前先走 [lecture-format §7](references/lecture-format.md) 四桶继承审计 |
 | 指名未附材料 | 自主定位最新权威一手版本，文首注明 | 按所定位材料套用 |
 
 ## 阶段验收与自治流转对照总表
@@ -99,7 +100,7 @@ Phase 0–4 免阻塞，Phase 5 完整交付，Post-Mastery 按需互动。开�
 | 文件 | 何时读取 | 内容 |
 | :--- | :--- | :--- |
 | [references/source-reading.md](references/source-reading.md) | Phase 0、Phase 4 开始前 | 通读、补读与源稿对账 |
-| [references/lecture-format.md](references/lecture-format.md) | 各 Phase 标题所列章节开始前 | 讲授、四测与交付物模板 |
+| [references/lecture-format.md](references/lecture-format.md) | 各 Phase 标题所列章节开始前 | 讲授、四测、交付物模板与换代重写协议 |
 | [references/prototype-lab.md](references/prototype-lab.md) | Phase 3 开始前 | 原型与破坏性实验 |
 | [references/diagram-assets.md](references/diagram-assets.md) | Phase 4 绘图前 | 图表与资产管线规范 |
 | [references/final-polish.md](references/final-polish.md) | Phase 5 开始前 | 成文精修与四测施测 |
