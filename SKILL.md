@@ -42,7 +42,7 @@ compatibility: 适用于 Claude Code、Antigravity 等支持 Agent Skills 的宿
 | 视频 | 逐段 transcript，标记关键操作与演示节点 | Phase 3 改为复述关键流程 + 实机复刻核心操作 |
 | 代码库 | 架构骨架与核心数据结构作为 Tier 1 | Phase 3 收敛为跑通最小端到端闭环 |
 | 轻量材料（博客短文等） | 通读全文，提取核心论点与假设前提 | Phase 0~1 合并；Phase 3 降级为设计预测题，不写代码 |
-| 同一材料再精读（上游实质换代且既有笔记在场） | 新旧版对照：新篇全文 + 旧版 diff | 完整 Phase 0 ~ 5，动笔前先走 [lecture-format §7](references/lecture-format.md) 四桶继承审计 |
+| 同一材料再精读（上游实质换代且既有笔记在场） | 新旧版对照：新篇全文 + 旧版 diff | 完整 Phase 0 ~ 5，Phase 0 对照摄取后、Phase 1 遴选前先走 [lecture-format §7](references/lecture-format.md) 四桶继承审计 |
 | 指名未附材料 | 自主定位最新权威一手版本，文首注明 | 按所定位材料套用 |
 
 ## 阶段验收与自治流转对照总表
