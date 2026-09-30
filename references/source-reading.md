@@ -19,13 +19,13 @@
 ## 2. 通读与快照
 
 - **全文通道**，取第一条可用的：① arXiv HTML 或 TeX 源（e-print 包，多文件按 `\input` 拼接）；② 官方 HTML 或其 Markdown 源，代码库 `git clone` 后只读；③ `pdftotext -layout`（可选依赖）；④ 宿主 Read 逐页转录（页首写 `p.N`），标「非确定性快照」，覆盖按页登记，摘录由 Mentor 用 Read 回看原页复核。视频取 transcript（官方字幕优先），补上演示画面的文字。
-- ② 静态抓取正文为空或只有骨架（JS 渲染页）时，按 §11 无头渲染取整页 DOM 作 R 原件，走 html 分支转文本并跑同款门禁；仍为空才落到 ③④。
+- ② 静态抓取正文为空或只有骨架（JS 渲染页）时，按 §11 无头渲染（优先复用单实例）取整页 DOM 作 R 原件，走 html 分支转文本并跑同款门禁；仍为空才落到 ③④。
 - WebFetch 一类摘要式抓取返回的是模型对页面的回答，只用于发现，不作快照与通读依据；超出单次读取上限的分段读完。
 - 指名未附材料时，按 §5 顺序定位最新权威一手版本作 S0，所据版本写入探针与精读笔记文首。
-- 快照存 `sources/S<n>.txt`（S0＝主材料＝[1]）并登记 sha256，代码库以 commit SHA 代替；定位用 `¶n`、`p.N`、`文件:行号` 或时间戳。被引用的补读信源同样须通读所引章节全文并存快照，只读过摘要的只能是「仅线索」。
-- **通读单位**：论文为节与附录（题注、脚注随节）；文档与网页为二级小节；视频为 transcript 段与演示节点；代码库为顶层条目加核心模块；轻量材料为小标题或自然段；非确定性快照为页。覆盖表逐单元写一句要点与去向（正文 §n / 折叠 / 不讲：理由），单元名逐字抄自 `units.txt`。
+- 快照存 `sources/S<n>.txt`（S0＝主材料＝[1]）并登记 sha256，代码库以 commit SHA 代替；定位用 `¶n`、`p.N`、`文件:行号` 或时间戳。**补读信源同守全文通读底线**：凡状态为「在用」的补读信源 `S<n>`（`n≥1`）必须经全文通道通读所引章节全文、落盘 `sources/S<n>.txt` 并确认非空与收尾完整，严禁仅凭搜索引擎 snippet 或摘要问答充当通读；只读过摘要的只能记「仅线索」。
+- **通读单位与全量信息消化**：论文为节与附录（题注、脚注随节）；文档与网页为二级小节；视频为 transcript 段与演示节点；代码库为顶层条目加核心模块；轻量材料为小标题或自然段；非确定性快照为页。**全量信息硬要求**：单元内的**关键图表（Figure/Table 题注、坐标与数据极值）、算法伪代码块（Algorithm 输入输出与分支条件）、核心数学公式（各符号物理/工程含义）**必须随所属单元一并通读吃透，严禁只读文字跳过图表与公式；覆盖表逐单元用自己的话写出一句实质要点（该单元解决了什么真实问题、状态如何流转）与去向（正文 §n / 折叠 / 不讲：理由），单元名逐字抄自 `units.txt`。
 
-门禁（Phase 0 出口）：两段对账输出为空，`UNIT MISS: 0`，`END OK`。
+门禁（Phase 0 出口）：两段对账输出为空，`UNIT MISS: 0`，`END OK`（阶段内如起过浏览器，完成抓取后即按 §11 关闭回收）。
 
 ```bash
 bash <<'SH'
@@ -78,9 +78,9 @@ COUNTS …（§9 输出原样粘贴）· 核验方式 <独立 / 非独立核验>
 
 | 类型 | 开单条件 |
 | :--- | :--- |
-| **T1 前置缺口** | 讲透所需的前置概念，材料没给外行能懂的解释（Phase 0 提炼前置时，或 Phase 1 复述卡在前置处） |
+| **T1 前置与实情缺口** | 讲透所需的前置概念，材料没给外行能懂的解释（Phase 0 提炼前置时，或 Phase 1 复述卡在前置处）；或材料仅给高维公式/理想假设、未交代机制在目标系统中的真实运行形态与数据流，导致无法写出贴近目标实情、「一看就会」的具体走查时，主动补读官方源码实现或权威架构文档 |
 | **T2 新鲜度** | 每篇必跑、不计预算、结论置顶：arXiv 看 Submission history 与 Comments [4]；有 DOI 查 Crossref `update-to` 与撤稿 [5]；文档看 changelog 与最新版本；代码库比对所指 commit 与最新 release、是否归档；视频看置顶勘误。有变化即开单 |
-| **T3 外部依赖** | 机制、规律或关键数字依赖的论断只以引用出现，材料未复述证据；≤3 条核心宣称（支撑一句话定位、白话主线或关键数字）的独立证据也按此开单，结果在「关键实证数字」表后用一句话交代，查无照实写 |
+| **T3 外部依赖与落地实证** | 机制、规律或关键数字依赖的论断只以引用出现，材料未复述证据；≤3 条核心宣称（支撑一句话定位、白话主线或关键数字）的独立证据或工业界落地复现结论也按此开单，结果在「关键实证数字」表后用一句话交代，查无照实写 |
 | **T4 单方争议** | 争议中一派立场只由材料作者转述，缺该派一手表述 |
 | **T5 现状疑点** | 对「现在」下断言（最新、主流、SOTA、已弃用、价格、采用率）且发布超过 12 个月；或 Mentor 记忆与材料冲突 |
 
@@ -138,12 +138,12 @@ SH
 
 Phase 4 出口、草稿快照之前执行，这是唯一可依据原文改正事实的时点。
 
-1. **抽取**（Mentor）：跑下方第 1 段取高风险句候选，剔除非论断后，与四测答案键要点（只以论断句入表，不附题面与评分口径）合成待核表 `$L/pending.md`（`| K# | 位置 | 句子 | 出处定位 |`），每个机制章至少 1 条 [10]，长文按章分批；表头照抄第 2 步口径。
-2. **判定**（全新 Checker，只拿 `sources/` 快照与待核表）[11]：逐行对照出处段 ±1 段（代码 ±20 行，视频 ±30 秒），另找最佳支持段也只以单段判定 [12]。先写一句「出处原意」，再判支持度（完整 / 部分 / 不支持）[13]、限定（保留 / 丢失 / 无）、时效（是 / 否）与失真，附逐字摘录 ≤2 句（照抄快照原文）；另从 S0 逐条列出材料自述的局限与负面结果。失真取「无」、八型之一或照搬 [14], [15]：
+1. **抽取**（Mentor）：跑下方第 1 段取高风险句候选，剔除非论断后，与四测答案键要点（只以论断句入表，不附题面与评分口径）合成待核表 `$L/pending.md`（`| K# | 位置 | 句子 | 出处定位 |`），每个机制章至少 1 条 [10]，长文按章分批；表头照抄第 2 步口径。为支持通读融会后的「自己话跨段综合重述」，`出处定位` 允许标注**多锚点联合定位**（如 `S0 ¶3+¶12` 或 `S0 §2+S2 §4`，至多 3 处锚点），严禁为迎合单段核对而退化为逐段缩译。
+2. **判定**（全新 Checker，只拿 `sources/` 快照与待核表）[11]：逐行对照出处段 ±1 段（代码 ±20 行，视频 ±30 秒；标注多锚点联合定位时，联合核对所标锚点集合是否共同支撑该综合重述；未标注联合定位而另找最佳支持段时仍以单段判定 [12]）。先写一句「出处原意」，再判支持度（完整 / 部分 / 不支持）[13]、限定（保留 / 丢失 / 无）、时效（是 / 否）与失真，附逐字摘录 ≤2 句（照抄快照原文，联合定位时摘最核心数字或命题句）；另从 S0 逐条列出材料自述的局限与负面结果。失真取「无」、八型之一或照搬 [14], [15]：
    - 范围泛化（特定样本、版本或场景说成通则）；确定度升级（可能→会、相关→导致、初步→证实）；条件丢失（删「仅当」「除非」、前提或适用范围）；数量失真（丢基线或分母、相对当绝对、最好当典型、区间变点值、单位错）；
-   - 行动化（描述改成建议）；关键删除（删负面结果、失败案例或自述局限）；无据插入（补进材料没有的事实、因果或类比引出的推论）；概念替换（换成相近概念，如召回说成准确）；照搬（未标引语的逐字复用或逐句对译）。
+   - 行动化（描述改成建议）；关键删除（删负面结果、失败案例或自述局限）；无据插入（补进材料没有的事实、因果或类比引出的推论）；概念替换（换成相近概念，如召回说成准确）；照搬（未标引语的同语种逐字复用、**跨语言逐句欧化对译（句式与从句语序紧贴外文原句的翻译腔）或段落骨架 1:1 镜像缩译**）。
 3. **校验**（Mentor）：跑第 2 段，摘录须空白归一后 `grep -F` 命中所指快照，含数字的句子其摘录须含同一数字（句中「截至」日期串比对前自动剔除）；实测行核对日志，推断行由 Checker 判前提。非确定性快照上命中只证明摘录在转录稿里，须用 Read 回看原页逐条复核。再任抽 3 条「完整支持」自行复判，有分歧即全量重判。
-4. **复用检测**：同语种材料跑第 4 段，命中须改写或改为带出处的引语；跨语言转述无法确定性判定，如实写「跨语言：不可判」，照搬只凭 Checker 判定。
+4. **复用检测**：同语种材料跑第 4 段，命中须改写或改为带出处的引语；跨语言转述无法靠字节 `grep` 判定，如实写「跨语言：不可判」，但其**跨语言逐句对译与段落骨架照搬由 Checker 在第 2 步显式判定**，命中「照搬」同样必须打碎原文语序、基于真切理解用自己的话重写。
 5. **处置**：未完整支持、限定丢失、失真或照搬的，一律改正、标推断或删除；答案键行的改正写回 `four-tests.md` 答案键节，按 [lecture-format §4.2](lecture-format.md#42-外行四测题型与命题准则-layperson-four-tests) 重算并追加登记 sha256；局限逐条映射到正文位置。返工行交原 Checker 以新句复判；宿主不能续接子代理时，派全新 Checker，只给返工行与对应快照。
 6. 不以「请务必准确」一类提示语作防线：这类准确性提示反使泛化结论的几率约翻倍 [15]。
 7. **回执**：逐行判定与 COUNTS 行写入 `sources.md`「对账回执」。门禁：COUNTS 各项为 0，无 `URL UNREG`，REFS 与在用行数相等。
@@ -190,28 +190,59 @@ SH
 
 ## 11. 浏览器使用纪律
 
-静态抓取够用就不起浏览器；起了就无头优先、同一实例多开、用毕即收。通道取舍仍以 §2 为准，本节只定浏览器档位，适用于本 Skill 自行发起的浏览器（§2 的 JS 渲染页、diagram-assets 中由本 Skill 直接发起的采集与实拍）；archify、项目采集脚本与宿主自带浏览器工具自管生命周期、以其文档为准，本 Skill 不代管其进程，其遗留只如实报告、不猜杀。
+静态抓取够用就不起浏览器；**凡需用浏览器完成的任务，一律无头优先、单实例复用、即用即关、孤儿进程兜底清理**。本节对齐 `AGENTS.md › Browser Validation Protocol`，统管本会话中由本 Skill、宿主浏览器 MCP（如 `@playwright/mcp`、`chrome-devtools-mcp`）、`archify` 及项目采集脚本发起的全部自动化浏览器生命周期，严禁在电脑桌面上弹出多个可见 Chrome 浏览器窗口，严禁遗留任何 Headless 或可见的自动化浏览器孤儿进程占用系统资源。
 
-- **通道优先级**：静态抓取 → 无头渲染（优先宿主原生无头浏览器工具，如有；否则本机 Chrome/Chromium 的 `--headless`）→ 可见浏览器。可见浏览器仅限两例：需用户真实登录态（凭据与登录动作由用户本人完成，本 Skill 不代输、不代点），或用户点名的人工目检；两例都只在用户点名或在场时发生，自主流程不为此阻塞，拿不到即按 §10 降级。渲染在浏览器沙箱内执行页面脚本，§1 信任边界照常适用（含导航 URL 的私有词约束）；无头实例只取 DOM 与截图，不在不可信页面点击、输入或下载。
-- **实例复用**：同一 lab 固定一个隔离配置 `--user-data-dir=$L/browser-data`（全新 profile，不读用户日常 Chrome 的配置与登录态），多页、多视口与 dark/light 切换在同一实例内以多标签或连续调用完成，不为每次抓取新建 profile。需程序驱动多标签时另加 `--remote-debugging-port=<n>`（纯 dump-dom 不需要）；调试端口只与隔离 `--user-data-dir` 成对出现，严禁对用户日常 Chrome 或任何含真实登录态的 profile 开调试端口，接管前先核对该实例归属本 lab。
-- **登记与回收**：自起实例启动即向 `$L/browsers.md` 追记一行 `| PID | 用途 | 特征 | 状态 |`（特征＝`--user-data-dir` 全路径，状态初记「在用」），关闭即把状态改「已关」。回收＝终止进程并注销登记，只对登记 PID 且进程 cmdline 含本 lab 特征双命中者执行，严禁宽域 `pkill` 或按进程名清理，用户日常 Chrome 永不触碰；Phase 4 绘图收尾与 Phase 5 交付前各终扫一次，只核对本 Skill 登记与 lab 特征可指认的实例。
+- **通道优先级与可见窗口禁令**：静态抓取 → **Headless Chrome 实例**（优先宿主无头 MCP 如 `@playwright/mcp`；次选本机 Chrome/Chromium `--headless=new`）→ 可见浏览器。**严禁为公开网页抓取、DOM 渲染、archify 校验（`finalize` / `browser-check`）或双主题 PNG 采集打开可见 Chrome**。可见浏览器仅限两例：① **A 类真实登录态场景**（须通过 `mcp__claude-in-chrome__*` 接入用户**既有日常 Chrome** 的独立 Tab Group，凭证与登录由用户本人完成，本 Skill 绝不代输密码或新建 Sandbox 可见 Chrome 跳同意屏）；② 用户显式点名的人工目检。两例均只在用户点名或在场时发生，自主流程不阻塞，拿不到即按 §10 降级。无头实例只取 DOM 与截图，不在不可信页面点击、输入或下载（§1 信任边界照常适用）。
+- **三级浏览器实例复用（减少冷启动与系统开销）**：
+  1. **宿主无头 MCP 复用（首选）**：宿主提供 `@playwright/mcp` 等无头浏览器工具时，全流程**复用同一个无头浏览器 context 与单一活动标签页**（多页面抓取按序 `navigate`，多视口与 dark/light 主题切换在同一页面内调节），严禁每抓一页或每截一图新建浏览器实例。
+  2. **Lab 单一 CDP 无头守护实例复用（CLI 多任务首选）**：需通过本机 Chrome CLI 处理多页抓取或多图采集时，同一 lab 固定一个隔离配置 `--user-data-dir="$L/browser-data"`（全新空 profile，绝不读取用户日常 Chrome 数据），只启动**唯一一个**后台无头守护实例（配 `--remote-debugging-port=<空闲端口>`，登记入 `$L/browsers.md`），通过 CDP / Playwright `connectOverCDP` 在同一实例内复用多标签或顺序导航；仅当全流程只有单次页面抓取且无后续浏览器任务时，方可使用单次 `--headless=new --dump-dom` 并在输出落盘后立即终止回收。调试端口只与 `$L/browser-data` 成对出现，**严禁对用户日常 Chrome 或任何含真实登录态的 profile 开启调试端口**。
+  3. **A 类登录态单 Tab 复用**：经 `mcp__claude-in-chrome__*` 访问需登录页面时，全程复用同一验证 `tabId`，操作完毕立即调 `tabs_close_mcp` 关闭该标签页。
+- **登记、即用即关与孤儿进程（Headless + 可见自动化）全清理**：
+  - **启动即登记**：自起实例启动即向 `$L/browsers.md` 追记一行 `| PID | 用途 | 特征 | 状态 |`（特征＝`--user-data-dir` 全路径及端口，状态初记「在用」）。
+  - **阶段内即用即关（Immediate Teardown）**：不等到 Phase 5 交付！每次阶段性浏览器任务（Phase 0 动态页抓取、Phase 4 图表渲染与采集）一完成，**立即关闭并释放浏览器资源**：① Playwright MCP 立即调 `browser_close`；② `claude-in-chrome` 立即调 `tabs_close_mcp`；③ 本机 CLI 实例按登记 PID 先终止其子进程树（`pkill -TERM -P $PID`）再终止主进程（`kill -TERM $PID`），清理 `$L/browser-data/Singleton*` 锁文件，并将 `$L/browsers.md` 状态改写为「已关」。
+  - **孤儿进程兜底清理（含 Headless 与可见自动化 Chrome 孤儿进程）**：Phase 0 抓取收尾、Phase 4 绘图收尾与 Phase 5 交付前各执行一次终扫与清理。在**绝对保护用户日常主 Chrome**（无 `--headless`、无 `--enable-automation`、无 `--remote-debugging-*`，且未挂载临时 `--user-data-dir` 的用户主浏览器进程永不触碰）的前提下，对两类残留进程执行树级回收：① 命中本 lab `--user-data-dir="$L/..."` 的全部残留实例；② 沦为系统孤儿进程（`PPID=1`）且命令列携带自动化/临时实例特征（`--headless`、`--enable-automation`、`--remote-debugging-(port|pipe)`，或 `--user-data-dir=` 指向 `/tmp/`、`/private/tmp/`、`/var/folders/`、`.temp/`、`.archify/`、`playwright_`、`puppeteer_`、`chrome-devtools-mcp`）的 **Headless Chrome 与可见 Chrome 孤儿进程**。
 - **降级**：无 Chrome/Chromium（缺则不安装）或无头被反爬挡住，一律不开可见浏览器硬闯——付费墙与镜像按 §10 顺序降级，需登录态页面除非用户点名提供，否则登记「抓取成功=否」只作线索；正文通道退回 §2 ③④。
 
-无头渲染取整页 DOM（外部抓取指令，显式标注；产出即 §2 html 分支的 R 原件，转文本与门禁照常）。`<Chrome 可执行文件>` 以宿主可定位者为准：macOS 常见 `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`，Linux 常见 `google-chrome` / `chromium`。`$L` 一律为 lab 绝对路径（终扫按该字面串匹配 ps cmdline，写成相对路径会漏检）。`"<URL>"` 须以 `http(s)://` 或 `file://` 起头，且不含 `"`、`'`、`$`、反引号、空白与 `; & | < > ( )` 等元字符方可代入（`-` 起头会被 Chrome 解析为 flag；元字符会在双引号内展开或断引，此类字符一律先百分号编码）。实测（Chrome 154，file:// 与 https 一致）：`--dump-dom` 写完输出**不自退**，`--timeout` 与 `--disable-background-networking` 等卫生 flags 均救不回——一律后台发起（行尾 `&`，`$!` 即登记 PID），等过 `--virtual-time-budget` 时长且输出已落盘后按 PID 回收，终扫兜底：
+无头渲染取整页 DOM（外部抓取指令，显式标注；产出即 §2 html 分支的 R 原件，转文本与门禁照常）。`<Chrome 可执行文件>` 以宿主可定位者为准：macOS 常见 `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`，Linux 常见 `google-chrome` / `chromium`。`$L` 一律为 lab 绝对路径（终扫按该字面串匹配 ps cmdline，写成相对路径会漏检）。`"<URL>"` 须以 `http(s)://` 或 `file://` 起头，且不含 `"`、`'`、`$`、反引号、空白与 `; & | < > ( )` 等元字符方可代入（`-` 起头会被 Chrome 解析为 flag；元字符会在双引号内展开或断引，此类字符一律先百分号编码）。实测（Chrome 154，file:// 与 https 一致）：`--dump-dom` 写完输出**不自退**——单页抓取后台发起（行尾 `&`，`$!` 即登记 PID），等输出落盘后**立即执行 `pkill -TERM -P $PID; kill -TERM $PID` 回收并改写 `browsers.md` 状态为「已关」**；多页抓取优先起单一 `--headless=new --remote-debugging-port=<port>` 守护实例复用并在阶段末统一回收：
 
 ```bash
-"<Chrome 可执行文件>" --headless --user-data-dir="$L/browser-data" --virtual-time-budget=10000 --dump-dom "<URL>" > "$L/sources/S<n>.raw.html" &
+"<Chrome 可执行文件>" --headless=new --user-data-dir="$L/browser-data" --no-first-run --no-default-browser-check --disable-background-networking --virtual-time-budget=10000 --dump-dom "<URL>" > "$L/sources/S<n>.raw.html" &
 ```
 
-终扫门禁（Phase 4 绘图收尾、Phase 5 交付前各跑一次；`BROWSER LEFT COUNT: 0` 且 `UNCLOSED ROWS: 0` 为过，未登记过浏览器时 `BROWSERS NONE` 同为过；只查不杀，回收由 Mentor 按登记执行；无 bash 宿主降级为按登记逐项人工核对、注明于交付总结（降级方式同 final-polish §4））：
+终扫与孤儿浏览器回收门禁（Phase 0 抓取后、Phase 4 绘图收尾、Phase 5 交付前各跑一次；自动回收本 lab 遗留实例与 `PPID=1` 的自动化/临时 profile 孤儿 Chrome（含 Headless 与可见自动化孤儿进程）及其 Helper 子进程树，严格豁免用户日常主 Chrome；回收后复核 `BROWSER LEFT COUNT: 0`、`ORPHAN AUTO BROWSER COUNT: 0` 且 `UNCLOSED ROWS: 0` 为过，未登记过浏览器时 `BROWSERS NONE` 同为过；无 bash 宿主降级为按登记逐项人工核对、注明于交付总结）：
 
 ```bash
 bash <<'SH'
 set -u; export LC_ALL=C
 L=<lab 目录绝对路径>; D="$L/browser-data"; B="$L/browsers.md"
-n=0; while IFS= read -r p; do echo "BROWSER LEFT: $p"; n=$((n + 1)); done \
+# 1) 定位并回收本 lab 遗留实例 + 系统孤儿自动化浏览器（PPID=1 且带 headless/automation/临时 user-data-dir 特征），绝不触碰用户日常主 Chrome
+reap_list=$(ps -axwwo pid=,ppid=,args= | awk -v d="--user-data-dir=$D" '
+  index($0, "Google Chrome") || index($0, "Chromium") || index($0, "chrome-headless-shell") {
+    if ($0 ~ /--type=/ || $0 ~ /chrome_crashpad_handler/ || $3 ~ /(grep|ugrep|awk)$/) next
+    is_lab = index($0, d)
+    is_auto_orphan = ($2 == 1 && ($0 ~ /--headless/ || $0 ~ /--enable-automation/ || $0 ~ /--remote-debugging-(port|pipe)/ || $0 ~ /--user-data-dir=.*(\/tmp\/|\/private\/tmp\/|\/var\/folders\/|\.temp\/|\.archify\/|playwright_|puppeteer_|chrome-devtools-mcp)/))
+    if (is_lab || is_auto_orphan) print $1
+  }')
+for p in $reap_list; do
+  pkill -TERM -P "$p" 2>/dev/null || true
+  kill -TERM "$p" 2>/dev/null || true
+done
+[ -n "$reap_list" ] && sleep 1
+for p in $reap_list; do
+  kill -0 "$p" 2>/dev/null && { pkill -KILL -P "$p" 2>/dev/null || true; kill -KILL "$p" 2>/dev/null || true; }
+done
+rm -f "$D"/Singleton* 2>/dev/null || true
+[ -s "$B" ] && sed -E 's/[|][[:space:]]*在用[[:space:]]*[|]/| 已关 |/g' "$B" > "$B.tmp" && mv "$B.tmp" "$B"
+# 2) 终扫断言：核对 lab 实例与自动化孤儿进程均已清零
+n=0; while IFS= read -r p; do [ -n "$p" ] && { echo "BROWSER LEFT: $p"; n=$((n + 1)); }; done \
   < <(ps -axwwo pid=,args= | awk -v d="--user-data-dir=$D" 'index($0, d) && $0 !~ /--type=/ && $2 !~ /(grep|ugrep|awk)$/ { print $1 }')
+o=0; while IFS= read -r p; do [ -n "$p" ] && { echo "ORPHAN AUTO BROWSER: $p"; o=$((o + 1)); }; done \
+  < <(ps -axwwo pid=,ppid=,args= | awk '
+    (index($0, "Google Chrome") || index($0, "Chromium") || index($0, "chrome-headless-shell")) && $0 !~ /--type=/ && $0 !~ /chrome_crashpad_handler/ && $2 == 1 {
+      if ($0 ~ /--headless/ || $0 ~ /--enable-automation/ || $0 ~ /--remote-debugging-(port|pipe)/ || $0 ~ /--user-data-dir=.*(\/tmp\/|\/private\/tmp\/|\/var\/folders\/|\.temp\/|\.archify\/|playwright_|puppeteer_|chrome-devtools-mcp)/) print $1
+    }')
 echo "BROWSER LEFT COUNT: $n"
+echo "ORPHAN AUTO BROWSER COUNT: $o"
 [ -s "$B" ] || echo "BROWSERS NONE（未登记过浏览器）"
 u=0; [ -s "$B" ] && u=$(awk -F'|' '/^[|] *[0-9]+/ { if ($5 !~ /已关/) u++ } END { print u + 0 }' "$B")
 echo "UNCLOSED ROWS: $u"

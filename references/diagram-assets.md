@@ -18,9 +18,9 @@
    `docs/assets/architecture/<分类>/<slug>.html`（整体替换，严禁手改 HTML）。
 3. **PNG 采集**：项目采集脚本（如 `scripts/capture-arch-diagram.mjs`）产出
    `<slug>-dark.png` / `<slug>-light.png`；**文档内嵌一律用暗色 PNG**（进 wiki 的文档只允许
-   纯 markdown `![]()` 相对路径）。采集若由本 Skill 直接发起浏览器，按
-   [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行：无头优先、
-   dark/light 合并同一实例、用毕回收。
+   纯 markdown `![]()` 相对路径）。采集一律按
+   [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行：**强制 Headless 模式、
+   全篇多图与 dark/light 主题合并复用同一无头浏览器实例（严禁弹窗打开可见 Chrome 或每图重启浏览器）、采集完毕即刻关闭会话并执行 §11 终扫清理孤儿进程**。
 4. **消费与登记**：笔记中「暗色 PNG + 图源 .mmd 链接 + 交互版 HTML 链接」三件引用；项目资产
    索引（如 `docs/assets/mermaid/README.md`）登记新行。资产与索引必须同一次 `git add`。
 
@@ -32,12 +32,7 @@
 - **构图纪律**：≤12 主节点；一条清晰主链，旁支从最近主链节点分出；`meta.quality_profile` 必须
   `"showcase"`；`meta.locale: "zh-CN"`；2–3 张结论卡片（cards）承载图中说不完的机制要点；
   先自动路由，诊断叫加什么几何控制才加（一次最多一个）。
-- **验收门**：`validate --quality showcase` 0 错 0 警（9 项 artifact checks）→ `deliver`（冻结
-  快照、SHA-256 回执）→ `visual-check`（真实浏览器 1440×900/1600×1000/1920×1080/2048×1320
-  containment 全过，四视口为命令固定集合）。**validate 单图 ≤10 轮**是硬纪律；
-  两轮聚焦修复无改善即停下如实报告。`visual-check` 的浏览器由 archify 自管，其文档支持
-  无头模式时优先无头；本 Skill 不为实拍另开可见 Chrome，交付前按 source-reading §11 终扫，
-  archify 遗留实例只如实报告、不代杀。
+- **验收门**：优先单次执行 `finalize <type> <candidate.json> <output.html> --quality showcase --json`（一体完成 `validate --quality showcase` 9 项检查、`deliver` 冻结快照与 SHA-256 回执、strict `check` 及无头 `browser-check` 真实浏览器四视口 1440×900/1600×1000/1920×1080/2048×1320 containment 校验，无需额外开启 `visual-check` 截图窗口）。**validate/finalize 单图 ≤10 轮**是硬纪律；两轮聚焦修复无改善即停下如实报告。严禁调用会弹出桌面窗口的预览命令；Phase 4 绘图收尾与 Phase 5 交付前一律按 [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行终扫，将本 lab 实例及子工具遗留的 `PPID=1` 自动化浏览器孤儿进程树（含 Headless 与可见自动化孤儿实例）全量回收清零。
 
 ## 三、实测硬约束（踩过的坑，按图型速查）
 
