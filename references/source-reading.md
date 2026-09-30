@@ -19,6 +19,7 @@
 ## 2. 通读与快照
 
 - **全文通道**，取第一条可用的：① arXiv HTML 或 TeX 源（e-print 包，多文件按 `\input` 拼接）；② 官方 HTML 或其 Markdown 源，代码库 `git clone` 后只读；③ `pdftotext -layout`（可选依赖）；④ 宿主 Read 逐页转录（页首写 `p.N`），标「非确定性快照」，覆盖按页登记，摘录由 Mentor 用 Read 回看原页复核。视频取 transcript（官方字幕优先），补上演示画面的文字。
+- ② 静态抓取正文为空或只有骨架（JS 渲染页）时，按 §11 无头渲染取整页 DOM 作 R 原件，走 html 分支转文本并跑同款门禁；仍为空才落到 ③④。
 - WebFetch 一类摘要式抓取返回的是模型对页面的回答，只用于发现，不作快照与通读依据；超出单次读取上限的分段读完。
 - 指名未附材料时，按 §5 顺序定位最新权威一手版本作 S0，所据版本写入探针与精读笔记文首。
 - 快照存 `sources/S<n>.txt`（S0＝主材料＝[1]）并登记 sha256，代码库以 commit SHA 代替；定位用 `¶n`、`p.N`、`文件:行号` 或时间戳。被引用的补读信源同样须通读所引章节全文并存快照，只读过摘要的只能是「仅线索」。
@@ -184,7 +185,38 @@ SH
 - **无网**：跳过补读，探针与全部缺口单标「待联网」；精读笔记首段用一句话说明未能联网核实（措辞不限），受影响论断列入「材料没有证明的事」的注释或未决疑点；不以模型记忆冒充信源。恢复联网时若已过 Phase 4 冻结点，只按基线勘误处理事实错误。
 - **付费墙、403 或反爬**：依次试 arXiv → 作者主页 → DOI 落地页 → 官方镜像，不用影子图书馆；仍拿不到的登记「抓取成功=否」，只作线索。
 - **无 pdftotext**：走 §2 通道 ④；宿主也读不了时标「通读受限」，写进已知局限。
+- **浏览器**：缺 Chrome/Chromium 或无头渲染被反爬挡住时，不开可见浏览器硬闯，按 §11「降级」处理。
 - **单 Agent**：见 §9 第 8 步。
+
+## 11. 浏览器使用纪律
+
+静态抓取够用就不起浏览器；起了就无头优先、同一实例多开、用毕即收。通道取舍仍以 §2 为准，本节只定浏览器档位，适用于本 Skill 自行发起的浏览器（§2 的 JS 渲染页、diagram-assets 中由本 Skill 直接发起的采集与实拍）；archify、项目采集脚本与宿主自带浏览器工具自管生命周期、以其文档为准，本 Skill 不代管其进程，其遗留只如实报告、不猜杀。
+
+- **通道优先级**：静态抓取 → 无头渲染（优先宿主原生无头浏览器工具，如有；否则本机 Chrome/Chromium 的 `--headless`）→ 可见浏览器。可见浏览器仅限两例：需用户真实登录态（凭据与登录动作由用户本人完成，本 Skill 不代输、不代点），或用户点名的人工目检；两例都只在用户点名或在场时发生，自主流程不为此阻塞，拿不到即按 §10 降级。渲染在浏览器沙箱内执行页面脚本，§1 信任边界照常适用（含导航 URL 的私有词约束）；无头实例只取 DOM 与截图，不在不可信页面点击、输入或下载。
+- **实例复用**：同一 lab 固定一个隔离配置 `--user-data-dir=$L/browser-data`（全新 profile，不读用户日常 Chrome 的配置与登录态），多页、多视口与 dark/light 切换在同一实例内以多标签或连续调用完成，不为每次抓取新建 profile。需程序驱动多标签时另加 `--remote-debugging-port=<n>`（纯 dump-dom 不需要）；调试端口只与隔离 `--user-data-dir` 成对出现，严禁对用户日常 Chrome 或任何含真实登录态的 profile 开调试端口，接管前先核对该实例归属本 lab。
+- **登记与回收**：自起实例启动即向 `$L/browsers.md` 追记一行 `| PID | 用途 | 特征 | 状态 |`（特征＝`--user-data-dir` 全路径，状态初记「在用」），关闭即把状态改「已关」。回收＝终止进程并注销登记，只对登记 PID 且进程 cmdline 含本 lab 特征双命中者执行，严禁宽域 `pkill` 或按进程名清理，用户日常 Chrome 永不触碰；Phase 4 绘图收尾与 Phase 5 交付前各终扫一次，只核对本 Skill 登记与 lab 特征可指认的实例。
+- **降级**：无 Chrome/Chromium（缺则不安装）或无头被反爬挡住，一律不开可见浏览器硬闯——付费墙与镜像按 §10 顺序降级，需登录态页面除非用户点名提供，否则登记「抓取成功=否」只作线索；正文通道退回 §2 ③④。
+
+无头渲染取整页 DOM（外部抓取指令，显式标注；产出即 §2 html 分支的 R 原件，转文本与门禁照常）。`<Chrome 可执行文件>` 以宿主可定位者为准：macOS 常见 `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`，Linux 常见 `google-chrome` / `chromium`。`$L` 一律为 lab 绝对路径（终扫按该字面串匹配 ps cmdline，写成相对路径会漏检）。`"<URL>"` 须以 `http(s)://` 或 `file://` 起头，且不含 `"`、`'`、`$`、反引号、空白与 `; & | < > ( )` 等元字符方可代入（`-` 起头会被 Chrome 解析为 flag；元字符会在双引号内展开或断引，此类字符一律先百分号编码）。实测（Chrome 154，file:// 与 https 一致）：`--dump-dom` 写完输出**不自退**，`--timeout` 与 `--disable-background-networking` 等卫生 flags 均救不回——一律后台发起（行尾 `&`，`$!` 即登记 PID），等过 `--virtual-time-budget` 时长且输出已落盘后按 PID 回收，终扫兜底：
+
+```bash
+"<Chrome 可执行文件>" --headless --user-data-dir="$L/browser-data" --virtual-time-budget=10000 --dump-dom "<URL>" > "$L/sources/S<n>.raw.html" &
+```
+
+终扫门禁（Phase 4 绘图收尾、Phase 5 交付前各跑一次；`BROWSER LEFT COUNT: 0` 且 `UNCLOSED ROWS: 0` 为过，未登记过浏览器时 `BROWSERS NONE` 同为过；只查不杀，回收由 Mentor 按登记执行；无 bash 宿主降级为按登记逐项人工核对、注明于交付总结（降级方式同 final-polish §4））：
+
+```bash
+bash <<'SH'
+set -u; export LC_ALL=C
+L=<lab 目录绝对路径>; D="$L/browser-data"; B="$L/browsers.md"
+n=0; while IFS= read -r p; do echo "BROWSER LEFT: $p"; n=$((n + 1)); done \
+  < <(ps -axwwo pid=,args= | awk -v d="--user-data-dir=$D" 'index($0, d) && $0 !~ /--type=/ && $2 !~ /(grep|ugrep|awk)$/ { print $1 }')
+echo "BROWSER LEFT COUNT: $n"
+[ -s "$B" ] || echo "BROWSERS NONE（未登记过浏览器）"
+u=0; [ -s "$B" ] && u=$(awk -F'|' '/^[|] *[0-9]+/ { if ($5 !~ /已关/) u++ } END { print u + 0 }' "$B")
+echo "UNCLOSED ROWS: $u"
+SH
+```
 
 ## 参考（IEEE）
 

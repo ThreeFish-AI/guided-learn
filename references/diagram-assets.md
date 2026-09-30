@@ -18,7 +18,9 @@
    `docs/assets/architecture/<分类>/<slug>.html`（整体替换，严禁手改 HTML）。
 3. **PNG 采集**：项目采集脚本（如 `scripts/capture-arch-diagram.mjs`）产出
    `<slug>-dark.png` / `<slug>-light.png`；**文档内嵌一律用暗色 PNG**（进 wiki 的文档只允许
-   纯 markdown `![]()` 相对路径）。
+   纯 markdown `![]()` 相对路径）。采集若由本 Skill 直接发起浏览器，按
+   [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行：无头优先、
+   dark/light 合并同一实例、用毕回收。
 4. **消费与登记**：笔记中「暗色 PNG + 图源 .mmd 链接 + 交互版 HTML 链接」三件引用；项目资产
    索引（如 `docs/assets/mermaid/README.md`）登记新行。资产与索引必须同一次 `git add`。
 
@@ -33,7 +35,9 @@
 - **验收门**：`validate --quality showcase` 0 错 0 警（9 项 artifact checks）→ `deliver`（冻结
   快照、SHA-256 回执）→ `visual-check`（真实浏览器 1440×900/1600×1000/1920×1080/2048×1320
   containment 全过，四视口为命令固定集合）。**validate 单图 ≤10 轮**是硬纪律；
-  两轮聚焦修复无改善即停下如实报告。
+  两轮聚焦修复无改善即停下如实报告。`visual-check` 的浏览器由 archify 自管，其文档支持
+  无头模式时优先无头；本 Skill 不为实拍另开可见 Chrome，交付前按 source-reading §11 终扫，
+  archify 遗留实例只如实报告、不代杀。
 
 ## 三、实测硬约束（踩过的坑，按图型速查）
 

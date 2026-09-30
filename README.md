@@ -83,7 +83,7 @@ ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # An
 
 ```
 SKILL.md                      # 核心契约：frontmatter 触发描述、教学铁律、双代理协议、易错点、验收总表与六阶段流水线（Agent 激活时加载）
-references/source-reading.md  # 信源通读、补读与源稿对账（定位与冻结 / 信任边界与隐私 / 全文通道、快照与覆盖表 / 缺口单与新鲜度探针 / 补读取舍与停止判据 / 冲突处理 / 出处与时效 / Checker 源稿对账 / 降级）
+references/source-reading.md  # 信源通读、补读与源稿对账（定位与冻结 / 信任边界与隐私 / 全文通道、快照与覆盖表 / 缺口单与新鲜度探针 / 补读取舍与停止判据 / 冲突处理 / 出处与时效 / Checker 源稿对账 / 降级 / 浏览器使用纪律）
 references/lecture-format.md  # 讲授、外行四测与交付物模板（全貌三问 / 类比使用规约与难点概念遴选 / 规律 / 争议 / 研究范围 / 外行四测命题、作答、判分与修文档闭环 / 用户自测套件 / 精读笔记与按需映射报告骨架 / 换代重写协议）
 references/prototype-lab.md   # 最小原型实验室方法论（确定性 mock / 场景设计 / 破坏性实验纪律）
 references/diagram-assets.md  # 图表资产管线规范（archify 优先 / Mermaid 降级）
