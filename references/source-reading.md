@@ -197,7 +197,7 @@ SH
 - **登记与回收**：自起实例启动即向 `$L/browsers.md` 追记一行 `| PID | 用途 | 特征 | 状态 |`（特征＝`--user-data-dir` 全路径，状态初记「在用」），关闭即把状态改「已关」。回收＝终止进程并注销登记，只对登记 PID 且进程 cmdline 含本 lab 特征双命中者执行，严禁宽域 `pkill` 或按进程名清理，用户日常 Chrome 永不触碰；Phase 4 绘图收尾与 Phase 5 交付前各终扫一次，只核对本 Skill 登记与 lab 特征可指认的实例。
 - **降级**：无 Chrome/Chromium（缺则不安装）或无头被反爬挡住，一律不开可见浏览器硬闯——付费墙与镜像按 §10 顺序降级，需登录态页面除非用户点名提供，否则登记「抓取成功=否」只作线索；正文通道退回 §2 ③④。
 
-无头渲染取整页 DOM（外部抓取指令，显式标注；产出即 §2 html 分支的 R 原件，转文本与门禁照常）。`<Chrome 可执行文件>` 以宿主可定位者为准：macOS 常见 `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`，Linux 常见 `google-chrome` / `chromium`。`$L` 一律为 lab 绝对路径（终扫按该字面串匹配 ps cmdline，写成相对路径会漏检）。`"<URL>"` 须以 `http(s)://` 或 `file://` 起头方可代入（`-` 起头会被 Chrome 解析为 flag）。实测（Chrome 154，file:// 与 https 一致）：`--dump-dom` 写完输出**不自退**，`--timeout` 与 `--disable-background-networking` 等卫生 flags 均救不回——一律后台发起（行尾 `&`，`$!` 即登记 PID），等过 `--virtual-time-budget` 时长且输出已落盘后按 PID 回收，终扫兜底：
+无头渲染取整页 DOM（外部抓取指令，显式标注；产出即 §2 html 分支的 R 原件，转文本与门禁照常）。`<Chrome 可执行文件>` 以宿主可定位者为准：macOS 常见 `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`，Linux 常见 `google-chrome` / `chromium`。`$L` 一律为 lab 绝对路径（终扫按该字面串匹配 ps cmdline，写成相对路径会漏检）。`"<URL>"` 须以 `http(s)://` 或 `file://` 起头，且不含 `"`、`'`、`$`、反引号、空白与 `; & | < > ( )` 等元字符方可代入（`-` 起头会被 Chrome 解析为 flag；元字符会在双引号内展开或断引，此类字符一律先百分号编码）。实测（Chrome 154，file:// 与 https 一致）：`--dump-dom` 写完输出**不自退**，`--timeout` 与 `--disable-background-networking` 等卫生 flags 均救不回——一律后台发起（行尾 `&`，`$!` 即登记 PID），等过 `--virtual-time-budget` 时长且输出已落盘后按 PID 回收，终扫兜底：
 
 ```bash
 "<Chrome 可执行文件>" --headless --user-data-dir="$L/browser-data" --virtual-time-budget=10000 --dump-dom "<URL>" > "$L/sources/S<n>.raw.html" &
