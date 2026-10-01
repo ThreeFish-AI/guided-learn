@@ -88,7 +88,7 @@ Phase 0–4 免阻塞，Phase 5 完整交付，Post-Mastery 按需互动。开�
 1. **精读笔记**：以 lab 工作记录为输入、按读者的问题组织，按 §5 模板起草至项目 `docs/`，回灌 Phase 3 真实日志。
 2. **《机制映射报告》**：仅用户明确要求映射时按 §6 模板产出。
 3. **源稿对账**：缺口单闭合后冻结信源，按 source-reading §9 派 Checker 逐条对账，未完整支持即改正、标推断或删除。
-4. **草稿快照**：各稿与 `sources.md` 以 `cp -n` 原样存入 `.temp/<topic>-lab/draft/`、sha256 记入进度清单；随后在 `docs/` 各稿顶部加一行 `> [!WARNING] 草稿，待成文精修`。
+4. **草稿快照**：各稿与 `sources.md` 以 `cp -n` 原样存入 `.temp/<topic>-lab/draft/`、sha256 记入进度清单（首版快照即为 [final-polish](references/final-polish.md) §5.1 盲评的草稿版；draft/ 一经写入即禁覆盖，后续任何修复轮次不得重拷刷新，需留痕时另存 `draft-r<n>/`，事实勘误按 final-polish §0 红线 1 侧写 `.v2.md`）；随后在 `docs/` 各稿顶部加一行 `> [!WARNING] 草稿，待成文精修`。
 
 ### Phase 5 · 成文精修与交付（读 [final-polish](references/final-polish.md)）
 
