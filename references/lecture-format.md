@@ -2,7 +2,7 @@
 
 Phase 1–2 的解剖、规律、争议与四测命题在后台自治推进，产物是 lab（`.temp/<topic>-lab/`）中的工作记录，作为 Phase 4 起草的输入；Phase 4 按 §5 模板起草唯一交付物精读笔记（《机制映射报告》仅按需，见 §6），Phase 5 再按 [final-polish](final-polish.md) 精修、经外行四测验收后定稿入库。过程记录只留 lab、不进正文（清单见 §5 末）。
 
-**目录**：[1. 全貌讲授结构](#1-全貌讲授结构phase-1)（[1.1 类比使用规约](#11-类比使用规约五硬律) · [1.2 难点概念遴选](#12-难点概念遴选协议脑暴-快筛) · [1.3 因果链示例](#13-因果链示例procedural-graph-实战)） · [2. 规律条目](#2-领域规律条目格式phase-2a) · [3. 争议条目](#3-争议条目格式phase-2b) · [4. 研究范围与外行四测](#4-研究范围与外行四测)（[4.1](#41-资料研究范围界定规范-research-scope-specification) · [4.2](#42-外行四测题型与命题准则-layperson-four-tests) · [4.3](#43-外行读者代理作答准则-learner-subagent-protocol) · [4.4](#44-判分与文档缺陷归因-document-defect-rubric) · [4.5](#45-修文档三板斧-targeted-document-repair) · [4.6](#46-同构变式复测与出闸门禁-isomorphic-re-test-protocol)） · [5. 精读笔记模板](#5-沉淀笔记文档模板phase-4--入项目-docs) · [6. 映射报告模板（按需）](#6-映射报告模板phase-4--入项目-docs) · [7. 再精读（换代重写）协议](#7-再精读换代重写协议generation-rewrite-protocol)（[7.1](#71-触发条件与四桶继承审计-four-bucket-inheritance-audit) · [7.2](#72-上游演进对账-upstream-evolution-reconciliation) · [7.3](#73-类比续任协议-incumbent-reappointment)）
+**目录**：[1. 全貌讲授结构](#1-全貌讲授结构phase-1)（[1.1 类比使用规约](#11-类比使用规约五硬律) · [1.2 难点概念遴选](#12-难点概念遴选协议脑暴-快筛) · [1.3 因果链示例](#13-因果链示例procedural-graph-实战)） · [2. 规律条目](#2-领域规律条目格式phase-2a) · [3. 争议条目](#3-争议条目格式phase-2b) · [4. 研究范围与外行四测](#4-研究范围与外行四测)（[4.1](#41-资料研究范围界定规范-research-scope-specification) · [4.2](#42-外行四测题型与命题准则-layperson-four-tests) · [4.3](#43-外行读者代理作答准则-learner-subagent-protocol) · [4.4](#44-判分与文档缺陷归因-document-defect-rubric) · [4.5](#45-修文档三板斧-targeted-document-repair) · [4.6](#46-同构变式复测与出闸门禁-isomorphic-re-test-protocol)） · [5. 精读笔记模板](#5-精读笔记文档模板phase-4--入项目-docs) · [6. 映射报告模板（按需）](#6-映射报告模板phase-4--入项目-docs) · [7. 再精读（换代重写）协议](#7-再精读换代重写协议generation-rewrite-protocol)（[7.1](#71-触发条件与四桶继承审计-four-bucket-inheritance-audit) · [7.2](#72-上游演进对账-upstream-evolution-reconciliation) · [7.3](#73-类比续任协议-incumbent-reappointment)）
 
 ## 1. 全貌讲授结构（Phase 1）
 
@@ -233,7 +233,7 @@ teach-back 检查的是讲的人讲得好不好，不是在考听的人 [6]：�
 
 ---
 
-## 5. 沉淀笔记文档模板（Phase 4 · 入项目 docs）
+## 5. 精读笔记文档模板（Phase 4 · 入项目 docs）
 
 ```markdown
 # <学习目标> 精读与通俗拆解
