@@ -9,3 +9,4 @@
 | rsi-self-improvement-hook | workflow | [源](mermaid/rsi-self-improvement-hook.mmd) | [HTML](architecture/rsi-self-improvement-hook.html) | [PNG](architecture/rsi-self-improvement-hook-dark.png) | `ff5e0da4a145bb68da1c6bc1651612c113935c86ef253aa5a0ec328413b6509f` | `fbf732a2a5a93f23d1c91951e32a3769572baa8459ab58a0f38da318e0a7380b` | 2026-09-25 |
 
 > Spec SHA-256 对应 `architecture/<slug>.workflow.json`（archify 图谱 spec）；Artifact SHA-256 对应 `architecture/<slug>.html`（交互版交付物），均可执行 `shasum -a 256 <文件>` 复核。
+> 2048×1320 视口的 visual-check 校验截图与交付双主题 PNG 字节同源，2026-10 起证据画廊（`<slug>.visual-check.html`）与回执（`<slug>.visual-check.json`）直接指向交付 PNG，不再单独留档；本仓 `assets/` 扁平布局为 [references/diagram-assets.md](../references/diagram-assets.md) §1 项目管线的简化参照。

@@ -14,7 +14,10 @@
 
 ## 1. 流程总览
 
-![RSI 自我改进钩子：触发白名单 → 旁路捕获 → Phase 5 先交付 → Steward 去重预检与根因调研 → 最小改进 → Verifier 独立核验门禁 → RSI 报告一次确认 → 推送并创建 PR；任一门禁不过则只报告不提 PR](../assets/architecture/rsi-self-improvement-hook-dark.png)
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="../assets/architecture/rsi-self-improvement-hook-light.png">
+  <img alt="RSI 自我改进钩子：触发白名单 → 旁路捕获 → Phase 5 先交付 → Steward 去重预检与根因调研 → 最小改进 → Verifier 独立核验门禁 → RSI 报告一次确认 → 推送并创建 PR；任一门禁不过则只报告不提 PR" src="../assets/architecture/rsi-self-improvement-hook-dark.png">
+</picture>
 
 *图 · RSI 自我改进钩子（Recursive Self-Improvement Hook）。图源 [Mermaid 源](../assets/mermaid/rsi-self-improvement-hook.mmd) · [交互版 HTML](../assets/architecture/rsi-self-improvement-hook.html)*
 

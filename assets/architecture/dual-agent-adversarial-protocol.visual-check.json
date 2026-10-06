@@ -1499,7 +1499,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "light",
-        "file": "dual-agent-adversarial-protocol.visual-check.2048x1320.light.png"
+        "file": "dual-agent-adversarial-protocol-light.png"
       },
       {
         "width": 2048,
@@ -1594,7 +1594,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "dark",
-        "file": "dual-agent-adversarial-protocol.visual-check.2048x1320.dark.png"
+        "file": "dual-agent-adversarial-protocol-dark.png"
       }
     ],
     "contactSheet": "dual-agent-adversarial-protocol.visual-check.html"
@@ -1604,8 +1604,8 @@
     "contactSheet": "dual-agent-adversarial-protocol.visual-check.html",
     "files": [
       {
-        "sha256": "05e7726170283c2dd0c2b2f8ee52564543e16df701af775862674b7d3914fa2a",
-        "bytes": 2030,
+        "sha256": "4f31d6fe409f7954439370c51fb787d8f5099d97887a3c88236b3949d8aad989",
+        "bytes": 1984,
         "file": "dual-agent-adversarial-protocol.visual-check.html"
       },
       {
@@ -1621,12 +1621,12 @@
       {
         "sha256": "254e1b4636733a057f9ea2cb0e0e1a2ab1303184033dca706505c7c68977d5b0",
         "bytes": 263704,
-        "file": "dual-agent-adversarial-protocol.visual-check.2048x1320.light.png"
+        "file": "dual-agent-adversarial-protocol-light.png"
       },
       {
         "sha256": "654f95a54eb33c6f63cc3f363af884a88b000091736a121632b3830dee6324de",
         "bytes": 279354,
-        "file": "dual-agent-adversarial-protocol.visual-check.2048x1320.dark.png"
+        "file": "dual-agent-adversarial-protocol-dark.png"
       }
     ]
   }

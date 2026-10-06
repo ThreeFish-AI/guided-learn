@@ -1259,7 +1259,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "light",
-        "file": "six-phase-autonomous-pipeline.visual-check.2048x1320.light.png"
+        "file": "six-phase-autonomous-pipeline-light.png"
       },
       {
         "width": 2048,
@@ -1338,7 +1338,7 @@
         "viewerChromeActive": true,
         "viewerChromeOk": true,
         "resolvedTheme": "dark",
-        "file": "six-phase-autonomous-pipeline.visual-check.2048x1320.dark.png"
+        "file": "six-phase-autonomous-pipeline-dark.png"
       }
     ],
     "contactSheet": "six-phase-autonomous-pipeline.visual-check.html"
@@ -1348,8 +1348,8 @@
     "contactSheet": "six-phase-autonomous-pipeline.visual-check.html",
     "files": [
       {
-        "sha256": "46723d128f51b2876cfc1417216edc152af49f2b246c5b2f2efb9518bd4f459b",
-        "bytes": 2018,
+        "sha256": "76ddc0634994b86a9ab0ecce08c290238a26b976992f0747488659416c2e3bf9",
+        "bytes": 1972,
         "file": "six-phase-autonomous-pipeline.visual-check.html"
       },
       {
@@ -1365,12 +1365,12 @@
       {
         "sha256": "f5ce81ce6a19954a7c8b04007b5ac7ea449538be119cc96b2f07d1cb88ce97e0",
         "bytes": 207435,
-        "file": "six-phase-autonomous-pipeline.visual-check.2048x1320.light.png"
+        "file": "six-phase-autonomous-pipeline-light.png"
       },
       {
         "sha256": "a23d55abc0679b438f8dc64acce6c90dd6d0d506b841b6b3e8fbec9dfc6d88cd",
         "bytes": 215624,
-        "file": "six-phase-autonomous-pipeline.visual-check.2048x1320.dark.png"
+        "file": "six-phase-autonomous-pipeline-dark.png"
       }
     ]
   }
