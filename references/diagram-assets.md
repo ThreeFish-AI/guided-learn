@@ -3,10 +3,10 @@
 > Phase 4 精读笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
 > 两个条件分开判定：① 宿主未安装 archify、或图类型无 archify 对应（erDiagram/timeline/mindmap/
 > quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 在 ① 未命中时，项目有无
-> 资产管线决定走第一节还是第四节。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
+> 资产管线决定走 §1 还是 §4。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
 > archify 文档冲突，以其文档为准。
 
-## 一、项目有资产管线时（如 `docs/assets/`）
+## 1. 项目有资产管线时（如 `docs/assets/`）
 
 四件套单向链路，顺序不可逆（判据与决策见项目 `docs/.agents/doc-media-assets.md` 类文档）：
 
@@ -24,7 +24,7 @@
 4. **消费与登记**：笔记中「暗色 PNG + 图源 .mmd 链接 + 交互版 HTML 链接」三件引用；项目资产
    索引（如 `docs/assets/mermaid/README.md`）登记新行。资产与索引必须同一次 `git add`。
 
-## 二、archify 快速创作要点（对照 archify 技能的 Fast authoring path）
+## 2. archify 快速创作要点（对照 archify 技能的 Fast authoring path）
 
 - **类型映射**：`flowchart/graph` → `workflow`（组件图用 `architecture`）；流水线/血缘/治理
   → `dataflow`；`sequenceDiagram` → `sequence`；`stateDiagram` → `lifecycle`。新 workflow 用
@@ -34,7 +34,7 @@
   先自动路由，诊断叫加什么几何控制才加（一次最多一个）。
 - **验收门**：优先单次执行 `finalize <type> <candidate.json> <output.html> --quality showcase --json`（一体完成 `validate --quality showcase` 9 项检查、`deliver` 冻结快照与 SHA-256 回执、strict `check` 及无头 `browser-check` 真实浏览器四视口 1440×900/1600×1000/1920×1080/2048×1320 containment 校验，无需额外开启 `visual-check` 截图窗口）。**validate/finalize 单图 ≤10 轮**是硬纪律；两轮聚焦修复无改善即停下如实报告。严禁调用会弹出桌面窗口的预览命令；Phase 4 绘图收尾与 Phase 5 交付前一律按 [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行终扫，将本 lab 实例及子工具遗留的 `PPID=1` 自动化浏览器孤儿进程树（含 Headless 与可见自动化孤儿实例）全量回收清零。
 
-## 三、实测硬约束（踩过的坑，按图型速查）
+## 3. 实测硬约束（踩过的坑，按图型速查）
 
 | 图型 | 硬约束 | 违反症状 |
 | --- | --- | --- |
@@ -48,7 +48,7 @@
 | lifecycle | 相邻态间隙固定 ~36px 放不下标签——标签 `labelDy` 上移出态带；泳道能少则少（3 泳道高度即近 700） | label overlap / 垂直越界 |
 | 全部 | 消费文档为进 wiki 的 markdown 时只用 `![]()`，`<picture>`/`<img>` 会 404 | wiki 图裂 |
 
-## 四、降级路径（无 archify、无对应图型或项目无资产管线）
+## 4. 降级路径（无 archify、无对应图型或项目无资产管线）
 
 - 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在 lab 进度清单注明未入管线的原因（不写入正文）。
 - 图类型无对应：原地保留 Mermaid（不建 .mmd，避免文本源双份）。
