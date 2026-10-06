@@ -24,7 +24,7 @@ compatibility: 适用于 Claude Code、Antigravity 等支持 Agent Skills 的宿
 
 ## 双代理对抗内省机制 (Dual-Agent Adversarial Protocol)
 
-- **宿主适配**：检验方（Learner、Checker）一律全新派发；单 Agent 运行时以角色隔离近似并标注「非隔离」，失败照修、通过不作出闸依据。
+- **宿主适配**：检验方（Learner、Checker）一律全新派发；单 Agent 运行时以角色隔离近似并标注「非隔离」，失败照修，通过不作出闸依据。
 - **输入隔离**：Learner 只给文档、题面与 lecture-format §4.3 作答准则（另允许 §1.2 第 5、6 步的类比抽检与失配探针；盲评判官另给 final-polish §5.1 检查表）；Checker 只给信源快照与待核表；绝不附答案键、评分要点与 Mentor 推理。
 
 ## 易错点（Gotchas）

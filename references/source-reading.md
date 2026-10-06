@@ -5,7 +5,7 @@
 ## 0. 定位与冻结
 
 - 补读只为讲透学习目标本体：补前置、核实论断、更新现状；不写综述，不为增色，没有缺口单就不检索。挂载：Phase 0 开 T1、跑 T2；Phase 1 开 T3、T5；2b 开 T4；Phase 4 源稿对账（§9）。
-- 冻结：缺口单全部为「已闭合 / 未决 / 待联网」后冻结；Phase 4 快照时 `sources.md` 与 `sources/` 随各稿 `cp -n` 入 `draft/`，sha256 记入 progress.md。**Phase 5 不新增信源与参考条目**：外行补阙只复用已有出处与 [n]，事实错误走 [final-polish §0](final-polish.md#0-适用范围与红线) 的基线勘误。
+- 冻结：缺口单全部为「已闭合 / 未决 / 待联网」后冻结；Phase 4 快照时 `sources.md` 与 `sources/` 随各稿 `cp -n` 入 `draft/`，sha256 记入 progress.md。**Phase 5 不新增信源与参考条目**：外行补阙与事实勘误的取材边界按 [final-polish §0](final-polish.md#0-适用范围与红线) 红线 1 执行。
 - 零缺口合法，写一行「本篇未扩展：<理由>」。门禁：进入 Phase 4 时无「进行中」单；Phase 5 前后 `sources.md` 的 sha256 不变。
 
 ## 1. 信任边界与隐私
