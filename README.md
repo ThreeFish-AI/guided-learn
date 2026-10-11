@@ -44,7 +44,7 @@ ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # An
 默认只交付精读笔记一份；《机制映射报告》须你明确提出（如「映射到我的代码库」）才会产出。
 验收默认由外行读者代理代管；想本人受考，直接说「考我」：成稿通过保真核对后，Agent 停下来把读懂与学通两类题交给你读文档作答，答不上就修文档、换同构变式复测，标准不放松，看会与听知仍由代理完成。也可点名测项或门禁（如「每节结束抽查我」）；中途放弃作答即交还代理，规则以 [SKILL.md 边界与触发契约](SKILL.md#边界与触发契约) 为准。
 
-**RSI 自我改进**：使用中由你或 Agent 发现的本 Skill 错误与改进项会被旁路记录、不打断学习；交付后由独立子 Agent 调研、改进与核验，门禁全绿后再按批向你确认一次（对外发布授权，不属学习门禁），方以 PR 回馈本仓库。需 `gh` 已登录，否则降级为本地 patch；持久授权与关闭方式见 [references/rsi-hook.md](references/rsi-hook.md#7-确认与提交)。
+**RSI 自我改进**：使用中由你或 Agent 发现的本 Skill 错误与改进项会被旁路记录、不打断学习；交付后由独立子 Agent 调研、改进与核验，门禁全绿后再按批向你确认一次（对外发布授权，不属学习门禁），方以 PR 回馈本仓库。协议（流程、G0–G4 门禁、状态机、降级与授权开关）已上收至统一 RSI 仓库 [ThreeFish-AI/rsi](https://github.com/ThreeFish-AI/rsi)，本仓适配契约见其 `repos/guided-learn.md`，指针见 [references/rsi-hook.md](references/rsi-hook.md)。
 
 ---
 
@@ -75,7 +75,7 @@ ln -s ~/{projects-dir}/guided-learn ~/.gemini/config/skills/guided-learn    # An
 | **Phase 4** | 起草与源稿对账：以 lab 工作记录为输入、按读者会问的问题起草精读笔记（archify 优先配图；《机制映射报告》仅按需）；缺口单闭合后冻结信源，草稿与 `sources.md` 快照为保真基线 | 免阻塞（自治演进） |
 | **Phase 5** | 成文精修与交付：诊断 AI 味与拼装碎片 → 结构 / 段落 / 句词 / 版式四轮精修 → 『像人』表达检测 → 确定性保真与 CLEAN PROSE 扫描（零脚手架外泄） → 盲评 → 外行四测修文档 → 保真复核，把起草稿改成读来自然如人写的成稿，再归档提交、一次交付 | **端到端完整交付** |
 | **Post-Mastery** | 「用户自测与费曼研讨套件」：提供高阶费曼思考题与追问入口 | **按需用户互动** |
-| **RSI（横切）** | 自我改进钩子：旁路捕获本 Skill 的错误与改进项，交付后调研、最小改进并核验，以 PR 回馈上游 | **交付后一次性确认** |
+| **RSI（横切）** | 自我改进钩子：旁路捕获本 Skill 的错误与改进项，交付后按统一 RSI 协议（[ThreeFish-AI/rsi](https://github.com/ThreeFish-AI/rsi)）调研、核验并以 PR 回馈上游 | **交付后一次性确认** |
 
 ---
 
@@ -88,7 +88,7 @@ references/lecture-format.md  # 讲授、外行四测与交付物模板（全貌
 references/prototype-lab.md   # 最小原型实验室方法论（确定性 mock / 场景设计 / 破坏性实验纪律）
 references/diagram-assets.md  # 图表资产管线规范（archify 优先 / Mermaid 降级）
 references/final-polish.md    # 成文精修与四测施测规约（五层诊断清单 / 四轮精修 / 确定性保真核对 / 盲评与外行四测施测 / 过度精修反模式）
-references/rsi-hook.md        # RSI 自我改进钩子协议（触发白名单 / 旁路捕获 / 核验门禁 / PR 模板 / 降级矩阵）
+references/rsi-hook.md        # RSI 自我改进钩子协议指针（SSOT 已上收 ThreeFish-AI/rsi；触发契约见 SKILL.md）
 evals/trigger-evals.json      # 触发评测集（12 应触发 + 12 近邻不触发，供 description 优化）
 evals/heldout-trigger-evals.json # held-out 触发评测集（10 + 10 边界探针；已参与一次 description 排除清单调参，此后视为 in-sample，泛化验证须另建新集）
 evals/evals.json              # 任务评测集（6 例：论文全流程 / 轻量材料裁剪 / TL;DR 边界 / 用户本人受考 / 长文档通读与时效 / 纯 PDF 降级）
