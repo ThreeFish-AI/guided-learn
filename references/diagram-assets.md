@@ -3,8 +3,9 @@
 > Phase 4 精读笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
 > 两个条件分开判定：① 宿主未安装 archify、或图类型无 archify 对应（erDiagram/timeline/mindmap/
 > quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 在 ① 未命中时，项目有无
-> 资产管线决定走 §1 还是 §4。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
-> archify 文档冲突，以其文档为准。
+> 资产管线决定走 §1 还是 §4；管线在而 PNG 采集脚本缺位时仍走 §1，按 §1 第 3 步末尾的降级口径
+> 自采。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装 archify 文档
+> 冲突，以其文档为准。
 
 ## 1. 项目有资产管线时（如 `docs/assets/`）
 
@@ -54,11 +55,9 @@
 | lifecycle | 相邻态间隙固定 ~36px 放不下标签——标签 `labelDy` 上移出态带；泳道能少则少（3 泳道高度即近 700） | label overlap / 垂直越界 |
 | 全部 | 消费文档为进 wiki 的 markdown 时只用 `![]()`，`<picture>`/`<img>` 会 404 | wiki 图裂 |
 
-## 4. 降级路径（无 archify、无对应图型、无资产管线或采集脚本）
+## 4. 降级路径（无 archify、无对应图型或项目无资产管线）
 
 - 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在 lab 进度清单注明未入管线的原因（不写入正文）。
 - 图类型无对应：原地保留 Mermaid（不建 .mmd，避免文本源双份）。
-- 项目有 `docs/assets/` 管线但无 PNG 采集脚本：按 §1 第 3 步降级口径以 Playwright/Puppeteer
-  元素级截图自采（条件：archify HTML 已 `finalize` 交付；做法：query 参数切主题 + `<svg>` 元素
-  截图；坑位：版本错配走 `executable_path` 逃生），双主题 PNG 与登记照常——本档是管线内补件，
-  不整体降级为内联 Mermaid。
+- 项目有 `docs/assets/` 管线但无 PNG 采集脚本：不入本档——按 §1 第 3 步降级口径元素级截图自采
+  （管线内补件，不整体降级为内联 Mermaid）。
