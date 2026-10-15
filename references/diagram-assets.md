@@ -21,6 +21,12 @@
    纯 markdown `![]()` 相对路径）。采集一律按
    [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行：**强制 Headless 模式、
    全篇多图与 dark/light 主题合并复用同一无头浏览器实例（严禁弹窗打开可见 Chrome 或每图重启浏览器）、采集完毕即刻关闭会话并执行 §11 终扫清理孤儿进程**。
+   项目无采集脚本时（管线在而脚本缺位——区别于 §4 的无管线整体降级档）：用 Playwright/Puppeteer
+   对交付 HTML 做元素级截图自采——条件：`?theme=dark|light` query 参数逐主题加载同一 HTML；
+   做法：对页面 `<svg>` 元素截图、`device_scale_factor=2`、单一 headless 实例双主题顺序复用；
+   坑位：运行时注入的 playwright 常与本机 ms-playwright 缓存版本错配（如需新版 headless-shell
+   而缓存为旧版 Chromium），以 `executable_path` 指向缓存内现存 Chromium 二进制逃生、不另下载，
+   采集纪律仍全量适用本档。
 4. **消费与登记**：笔记中「暗色 PNG + 图源 .mmd 链接 + 交互版 HTML 链接」三件引用；项目资产
    索引（如 `docs/assets/mermaid/README.md`）登记新行。资产与索引必须同一次 `git add`。
 
@@ -48,7 +54,11 @@
 | lifecycle | 相邻态间隙固定 ~36px 放不下标签——标签 `labelDy` 上移出态带；泳道能少则少（3 泳道高度即近 700） | label overlap / 垂直越界 |
 | 全部 | 消费文档为进 wiki 的 markdown 时只用 `![]()`，`<picture>`/`<img>` 会 404 | wiki 图裂 |
 
-## 4. 降级路径（无 archify、无对应图型或项目无资产管线）
+## 4. 降级路径（无 archify、无对应图型、无资产管线或采集脚本）
 
 - 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在 lab 进度清单注明未入管线的原因（不写入正文）。
 - 图类型无对应：原地保留 Mermaid（不建 .mmd，避免文本源双份）。
+- 项目有 `docs/assets/` 管线但无 PNG 采集脚本：按 §1 第 3 步降级口径以 Playwright/Puppeteer
+  元素级截图自采（条件：archify HTML 已 `finalize` 交付；做法：query 参数切主题 + `<svg>` 元素
+  截图；坑位：版本错配走 `executable_path` 逃生），双主题 PNG 与登记照常——本档是管线内补件，
+  不整体降级为内联 Mermaid。
