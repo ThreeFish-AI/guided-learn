@@ -3,8 +3,9 @@
 > Phase 4 精读笔记的配图**默认走 archify**（独立的 archify 技能），不再手写内联 Mermaid。
 > 两个条件分开判定：① 宿主未安装 archify、或图类型无 archify 对应（erDiagram/timeline/mindmap/
 > quadrantChart/gantt/pie/gitGraph/classDiagram）→ 降级内联 Mermaid；② 在 ① 未命中时，项目有无
-> 资产管线决定走 §1 还是 §4。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装
-> archify 文档冲突，以其文档为准。
+> 资产管线决定走 §1 还是 §4；管线在而 PNG 采集脚本缺位时仍走 §1，按 §1 第 3 步末尾的降级口径
+> 自采。本规范总结自真实图资产管线的规模化实测；archify 的命令与参数若与已安装 archify 文档
+> 冲突，以其文档为准。
 
 ## 1. 项目有资产管线时（如 `docs/assets/`）
 
@@ -21,6 +22,12 @@
    纯 markdown `![]()` 相对路径）。采集一律按
    [source-reading §11](source-reading.md#11-浏览器使用纪律) 执行：**强制 Headless 模式、
    全篇多图与 dark/light 主题合并复用同一无头浏览器实例（严禁弹窗打开可见 Chrome 或每图重启浏览器）、采集完毕即刻关闭会话并执行 §11 终扫清理孤儿进程**。
+   项目无采集脚本时（管线在而脚本缺位——区别于 §4 的无管线整体降级档）：用 Playwright/Puppeteer
+   对交付 HTML 做元素级截图自采——条件：`?theme=dark|light` query 参数逐主题加载同一 HTML；
+   做法：对页面 `<svg>` 元素截图、`device_scale_factor=2`、单一 headless 实例双主题顺序复用；
+   坑位：运行时注入的 playwright 常与本机 ms-playwright 缓存版本错配（如需新版 headless-shell
+   而缓存为旧版 Chromium），以 `executable_path` 指向缓存内现存 Chromium 二进制逃生、不另下载，
+   采集纪律仍全量适用本档。
 4. **消费与登记**：笔记中「暗色 PNG + 图源 .mmd 链接 + 交互版 HTML 链接」三件引用；项目资产
    索引（如 `docs/assets/mermaid/README.md`）登记新行。资产与索引必须同一次 `git add`。
 
@@ -52,3 +59,5 @@
 
 - 无 archify、图型无对应，或项目无 `docs/assets/` 管线：笔记内联 Mermaid，遵循「概念图轻量、深色可读、subgraph 分层」原则，并在 lab 进度清单注明未入管线的原因（不写入正文）。
 - 图类型无对应：原地保留 Mermaid（不建 .mmd，避免文本源双份）。
+- 项目有 `docs/assets/` 管线但无 PNG 采集脚本：不入本档——按 §1 第 3 步降级口径元素级截图自采
+  （管线内补件，不整体降级为内联 Mermaid）。
