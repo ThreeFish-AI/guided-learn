@@ -2,7 +2,7 @@
 name: guided-learn
 description: 通读论文（arXiv 等）、技术文档与设计规格、网页、视频或代码库等一手材料的全部内容（可由用户提供，或指名后自主定位），必要时自主补读其最新权威信源，再以自己的话写成外行也能一读就懂、一看就会、一听便知、一学就通的《精读与通俗拆解》：先梳理全貌再总结，讲透底层规律、权衡取舍与核心争议，用最小原型与破坏性实验验证机制，由内置外行读者代理 Subagent 验收、不达标即修文档，端到端自治交付；映射到用户代码库仅在明确要求时产出。当用户要求「带我精读论文/资料」「先梳理全貌不要急着总结」「提炼该领域核心规律与争议」「以老师身份带我掌握 X」「搞懂原理并动手做实验」时使用；即使未明说「精读」，只要用户提供或指名一手材料并希望深入掌握、接受考核或动手验证，也应使用。不用于快速摘要、TL;DR 或以 cheatsheet、对比表等汇总产物为目标的材料梳理、全文翻译、单点 API 查询、日常 Bug 排查与代码评审、无可定位一手信源的对话式概念讲解与事实核查，或把材料转成视频、skill 等其他产物。
 license: MIT
-compatibility: 适用于 Claude Code、Antigravity 等支持 Agent Skills 的宿主。需联网抓取在线材料与补读信源（无网时按 source-reading 降级）；Phase 3 需 Python 3（优先 uv）；通读对账与保真核对需 bash、提交需 git。Subagent、archify 技能、pdftotext、无头 Chrome 与 gh 均为可选，缺失时按文内降级路径执行。
+compatibility: 适用于 Claude Code、Antigravity 等支持 Agent Skills 的宿主。需联网抓取在线材料与补读信源（无网时按 source-reading 降级）；Phase 3 需 Python 3（优先 uv）；通读对账与保真核对需 bash、提交需 git。Subagent、archify 技能、pdftotext 与 pdftoppm（poppler）、rsvg-convert、无头 Chrome 与 gh 均为可选，缺失时按文内降级路径执行。
 ---
 
 # 精读与通俗拆解（Guided Learn）
