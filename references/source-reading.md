@@ -108,7 +108,7 @@ M="$L/sources.md"; sec() { awk -v h="$1" '$0 ~ "^## " h { f = 1; next } /^## /{ 
 [ "$(command grep -m 1 '^## ' "$M")" = "## 新鲜度探针" ] || echo "PROBE NOT ON TOP"
 sec 缺口单 | awk -F'|' -v c="$C" '/^[|] *G[0-9]/ { t = $3; gsub(/ /, "", t); n += (t != "T2")
   if ($8 + 0 > 10 || $9 + 0 > 2) print "OVER BUDGET:" $2; if ($11 ~ /进行中/) print "OPEN:" $2 } END { if (n > c) print "OVER CAP: " n "/" c }'
-sec 信源表 | awk -F'|' '/^[|] *S[0-9]/ && (($10 ~ /在用/ && $11 !~ /是/) || ($6 ~ /三手/ && $10 !~ /仅线索|弃用/)) { print "SOURCE MISUSE:" $2 }'
+sec 信源表 | awk -F'|' '/^[|] *S[0-9]/ && (($10 ~ /在用|锚点/ && $11 !~ /是/) || ($6 ~ /三手/ && $10 !~ /仅线索|弃用/)) { print "SOURCE MISUSE:" $2 }'
 [ -s "$L/private.txt" ] && { sec 新鲜度探针; sec 缺口单; } | command grep -F -f "$L/private.txt" | sed 's/^/PRIVACY HIT: /'
 SH
 ```
