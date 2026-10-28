@@ -426,7 +426,7 @@ mkdir -p "$O"
 awk '/^[[:space:]]*(```|~~~)/ { if (!d) print; f = !f; next }
   f { if (!d) print; next }
   { o = gsub(/<details[ >]/, "&"); c = gsub(/<\/details>/, "&"); if (!d && !o) print; d += o - c; if (d < 0) d = 0 }' "$F" > "$O/open.md"
-# 听稿：再删代码块与图片行、表格行去结构保留单元格文本（无行列结构可查表）、Callout 标记，链接只留文字
+# 听稿：再删代码块与图片行、表格行去结构保留单元格文本（无行列结构可查表；单元格内转义 \| 与全角冒号分隔行不覆盖）、Callout 标记，链接只留文字
 awk '/^[[:space:]]*(```|~~~)/ { f = !f; next } !f' "$O/open.md" | command grep -v -E '^[[:space:]]*!\[' \
   | awk '/^[[:space:]]*\|/ { t = $0; gsub(/[[:space:]:]/, "", t); gsub(/\|/, "", t); if (t ~ /^-+$/) next
       t = $0; gsub(/\|/, " ", t); gsub(/[[:space:]]+/, " ", t); sub(/^ /, "", t); sub(/ $/, "", t); print t; next } { print }' \
